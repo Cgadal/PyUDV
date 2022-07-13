@@ -42,7 +42,7 @@ Types = {'Frequency': np.int32,
          'NumberOfCycles': np.int32,
          'CycleDelay': np.int32,
          'Version': np.int32,
-         'Table': np.int32
+         'Table': str  # switched form np.int32 to str due to problem loading files with multiplexing
          }
 
 
@@ -101,6 +101,29 @@ Absolute_gains = {0.5: {3: 2.17, 4: 4.41, 5: 8.82, 6: 16.67, 7: 33.33, 8: 60.00,
 
 
 def read_MFprof(fileName, SI_units=True, convert_time=True):
+    """Read .mfprof binary files of the Met-Flow UDV. This is mostly a direct python translation of the matlab script given by Met-Flow.
+
+    Parameters
+    ----------
+    fileName : str
+        Path to the .mfprof file.
+    SI_units : bool
+        If `True`, convert units to the international system (the default is True).
+    convert_time : bool
+        If True, convert the time vector into seconds (the default is True).
+
+    Returns
+    -------
+    Data : dict
+        Dictionnary with the data stored in the mprof files. Available keys are: 'transducer', 'profileTime', 'DopplerData', 'AmplitudeData', 'DistanceAlongBeam'
+    Parameters : dict
+        Dictionnary with the parameters used in the UVP software when sampling the data. See UVP documentation for detail. Keys are: 'Frequency', 'StartChannel', 'ChannelDistance', 'ChannelWidth', 'MaximumDepth', 'SoundSpeed', 'Angle', 'GainStart', 'GainEnd', 'Voltage', 'Iterations', 'NoiseLevel', 'CyclesPerPulse', 'TriggerMode', 'TriggerModeName', 'ProfileLength', 'ProfilesPerBlock', 'Blocks', 'AmplitudeStored', 'DoNotStoreDoppler', 'RawDataMin', 'RawDataMax', 'RawDataRange', 'AmplDataMin', 'AmplDataMax', 'VelocityInterpretingMode', 'UserSampleTime', 'SampleTime', 'UseMultiplexer', 'FlowMapping', 'FirstValidChannel', 'LastValidChannel', 'FlowRateType', 'PeriodEnhOffset', 'PeriodEnhPeriod', 'PeriodEnhNCycles', 'Comment', 'MeasurementProtocol', 'NumberOfCycles', 'CycleDelay', 'Version', 'Table'
+    Infos
+        Dictionnary with some informations stored during sampling of the data. Keys are 'Signum', 'measParamsOffset', 'nProfiles', 'reserved1', 'flags', 'recordSize', 'nChannels', 'reserved2', 'startTime'.
+    Units
+        Dictionnary with the units of the variables stored in the other dictionnaries. Keys are the name of the variables.
+
+    """
     Infos = {}
     Parameters = {}
     Data = {}
@@ -208,7 +231,7 @@ def read_MFprof(fileName, SI_units=True, convert_time=True):
         if SI_units & (Base_units[key] == 'ms'):  # Converting ms to s
             Parameters[key] = 1e-3*Parameters[key]
             Units[key] = 's'
-    #
+
     Data['DistanceAlongBeam'] = np.arange(Data['AmplitudeData'].shape[0])*Parameters['ChannelDistance'] + Parameters['StartChannel']
     return Data, Parameters, Infos, Units
 
@@ -330,32 +353,29 @@ def amplitude_from_MFprof_reading(Data, Parameters, Nbytes=14, deltaV=5):
     return amplitude_from_UVPdata(raw_data, z, GainStart, GainEnd, zstart, zend, Nbytes=Nbytes, deltaV=deltaV)
 
 
+def write_dictionnary(dico, file):
+    """Write parameter dictionnary to a .txt file.
+    Each line of this file is a dictionnary key, followed by the corresponding entry, directly converted using `str()`.
+
+    Parameters
+    ----------
+    dico : dict
+        input dictionnary
+    file : str
+        output txt file.
+
+    Returns
+    -------
+
+        Nothing.
+
+    """
+    with open(file, 'w') as f:
+        for key in sorted(dico.keys()):
+            line = key + ': ' + str(dico[key]) + '\n'
+            f.write(line)
+
+
 def filetime_to_dt(ft):
     us = int(ft) // 10
     return datetime(1601, 1, 1) + timedelta(microseconds=us)
-
-
-if __name__ == '__main__':
-    import matplotlib.pyplot as plt
-    from matplotlib.colors import SymLogNorm
-    # fileName = '../UDV/20201007/phi0_01_run65.mfprof'
-    fileName = '../UDV/20200925/phi0_002_run11.mfprof'
-    Data, Parameters, Infos, Units = read_MFprof(fileName)
-    Velocity_field = velocity_from_MFprof_reading(Data, Parameters)
-    z = Data['DistanceAlongBeam']
-    #
-    plt.figure()
-    plt.subplot(1, 2, 1)
-    norm = SymLogNorm(linthresh=100, linscale=0.1, base=10, vmin=-2000, vmax=2000)
-    plt.imshow(Data['AmplitudeData'], extent=[Data['profileTime'].min(), Data['profileTime'].max(), z.min(), z.max()], aspect='auto', norm=norm)
-    plt.colorbar(label='Raw amplitude data~[??]')
-    plt.xlabel('Time~[s]')
-    plt.ylabel('Depth~[m]')
-    plt.subplot(1, 2, 2)
-    norm = SymLogNorm(linthresh=0.003, linscale=0.1, base=10, vmin=-0.01, vmax=0.01)
-    plt.imshow(Velocity_field, extent=[Data['profileTime'].min(), Data['profileTime'].max(), z.min(), z.max()], aspect='auto', norm=norm)
-    plt.colorbar(label='Velocity~[m/s]')
-    plt.xlabel('Time~[s]')
-    plt.ylabel('Depth~[m]')
-    plt.tight_layout()
-    plt.show()
