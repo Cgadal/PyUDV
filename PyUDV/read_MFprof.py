@@ -42,7 +42,10 @@ Types = {'Frequency': np.int32,
          'NumberOfCycles': np.int32,
          'CycleDelay': np.int32,
          'Version': np.int32,
-         'Table': str  # switched form np.int32 to str due to problem loading files with multiplexing
+         'Table': str,  # switched form np.int32 to str due to problem loading files with multiplexing
+         'CalcOffsetPulsesCount': str,  # switched form np.int32 to str due to problem loading files with multiplexing
+         'MultiplexerUsingType': str  # switched form np.int32 to str due to problem loading files with multiplexing
+
          }
 
 
@@ -88,7 +91,9 @@ Base_units = {'Frequency': 'Hz',
               'NumberOfCycles': 'int',
               'CycleDelay': 'int',
               'Version': 'int',
-              'Table': 'int'
+              'Table': 'int',
+              'CalcOffsetPulsesCount': 'int',  # switched form np.int32 to str due to problem loading files with multiplexing              'CalcOffsetPulsesCount': 'int'  # switched form np.int32 to str due to problem loading files with multiplexing
+              'MultiplexerUsingType': 'int'  # switched form np.int32 to str due to problem loading files with multiplexing
               }
 
 
@@ -120,7 +125,7 @@ def read_MFprof(fileName, SI_units=True, convert_time=True):
         Dictionnary with the parameters used in the UVP software when sampling the data. See UVP documentation for detail. Keys are: 'Frequency', 'StartChannel', 'ChannelDistance', 'ChannelWidth', 'MaximumDepth', 'SoundSpeed', 'Angle', 'GainStart', 'GainEnd', 'Voltage', 'Iterations', 'NoiseLevel', 'CyclesPerPulse', 'TriggerMode', 'TriggerModeName', 'ProfileLength', 'ProfilesPerBlock', 'Blocks', 'AmplitudeStored', 'DoNotStoreDoppler', 'RawDataMin', 'RawDataMax', 'RawDataRange', 'AmplDataMin', 'AmplDataMax', 'VelocityInterpretingMode', 'UserSampleTime', 'SampleTime', 'UseMultiplexer', 'FlowMapping', 'FirstValidChannel', 'LastValidChannel', 'FlowRateType', 'PeriodEnhOffset', 'PeriodEnhPeriod', 'PeriodEnhNCycles', 'Comment', 'MeasurementProtocol', 'NumberOfCycles', 'CycleDelay', 'Version', 'Table'
     Infos
         Dictionnary with some informations stored during sampling of the data. Keys are 'Signum', 'measParamsOffset', 'nProfiles', 'reserved1', 'flags', 'recordSize', 'nChannels', 'reserved2', 'startTime'.
-    Units
+    Units1
         Dictionnary with the units of the variables stored in the other dictionnaries. Keys are the name of the variables.
 
     """

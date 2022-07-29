@@ -15,7 +15,7 @@ Amplitude_data = amplitude_from_MFprof_reading(Data, Parameters)
 Velocity_data = velocity_from_MFprof_reading(Data, Parameters)
 time = Data['profileTime']
 z_coordinates = Data['DistanceAlongBeam']*1e2
-indmax_time = np.argwhere(time == 0)[1][0] - 1
+indmax_time = np.argwhere(Data['transducer'] == 0)[1][0] - 1
 indmax_z = -1
 ind_bottom = 572
 
@@ -27,7 +27,7 @@ c = ax.pcolormesh(time[:indmax_time], z_coordinates[:indmax_z],
                   rasterized=True, shading='auto')
 ax.axhline(y=z_coordinates[ind_bottom], color='k', lw='0.5', ls='--')
 ax.invert_yaxis()
-fig.colorbar(c, label='Velocity [cm/s]')
+fig.colorbar(c, label='Velocity [m/s]')
 ax.set_xlabel('Time [s]')
 ax.set_ylabel('DistanceAlongBeam [cm]')
 # fig.draw_without_rendering()
