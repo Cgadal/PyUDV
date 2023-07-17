@@ -2,9 +2,9 @@ import numpy as np
 import matplotlib.pyplot as plt
 import sys
 sys.path.append('../PyUDV')
-import PyUDV.amplitude_inversion.direct_models as DM
-from PyUDV.amplitude_inversion.sediment_acoustic_models import quartz_sand as quartz
-from PyUDV.amplitude_inversion.inversion import explicit_inversion
+import pyUDV.amplitude_inversion.direct_models as DM
+from pyUDV.amplitude_inversion.sediment_acoustic_models import quartz_sand as quartz
+from pyUDV.amplitude_inversion.inversion import explicit_inversion
 import Themes.These as These
 
 

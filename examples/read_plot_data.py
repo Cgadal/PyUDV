@@ -4,7 +4,7 @@ import matplotlib.pyplot as plt
 import matplotlib.colors as colors
 #
 sys.path.append('../')
-from PyUDV.read_MFprof import (read_MFprof, amplitude_from_MFprof_reading,
+from pyUDV.read_MFprof import (read_MFprof, amplitude_from_MFprof_reading,
                                velocity_from_MFprof_reading)
 
 path_data = 'src/data_sample.mfprof'

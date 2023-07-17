@@ -1,6 +1,6 @@
 import numpy as np
 from scipy.integrate import cumulative_trapezoid, trapezoid
-from PyUDV.amplitude_inversion.direct_models import correction_factor
+from .direct_models import correction_factor
 
 
 r"""
