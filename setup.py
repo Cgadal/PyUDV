@@ -1,8 +1,8 @@
 from setuptools import setup, find_packages
 
-setup(name='PyUDV',
+setup(name='pyUDV',
       version='0.1',
-      url='https://github.com/Cgadal/PyUDV',
+      url='https://github.com/Cgadal/pyUDV',
       author='Cyril Gadal',
       author_email='cyril.gadal@imft.fr',
       license='GNU',
@@ -10,5 +10,5 @@ setup(name='PyUDV',
       zip_safe=False,
       python_requires='>=3',
       install_requires=[
-        "numpy", "matplotlib", "datetime", "scipy"
-          ])
+          "numpy", "matplotlib", "datetime", "scipy"
+      ])

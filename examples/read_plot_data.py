@@ -1,18 +1,19 @@
 import sys
-import numpy as np
-import matplotlib.pyplot as plt
-import matplotlib.colors as colors
-#
-sys.path.append('../')
-from pyUDV.read_MFprof import (read_MFprof, amplitude_from_MFprof_reading,
-                               velocity_from_MFprof_reading)
 
+import matplotlib.colors as colors
+import matplotlib.pyplot as plt
+import numpy as np
+
+from pyUDV.read_mfprof import (amplitude_from_mfprof_reading, read_mfprof,
+                               velocity_from_mfprof_reading)
+
+#
 path_data = 'src/data_sample.mfprof'
 
 # #### Loading data
-Data, Parameters, Info, Units = read_MFprof(path_data)
-Amplitude_data = amplitude_from_MFprof_reading(Data, Parameters)
-Velocity_data = velocity_from_MFprof_reading(Data, Parameters)
+Data, Parameters, Info, Units = read_mfprof(path_data)
+Amplitude_data = amplitude_from_mfprof_reading(Data, Parameters)
+Velocity_data = velocity_from_mfprof_reading(Data, Parameters)
 time = Data['profileTime']
 z_coordinates = Data['DistanceAlongBeam']*1e2
 indmax_time = np.argwhere(Data['transducer'] == 0)[1][0] - 1
