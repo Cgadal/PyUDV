@@ -1,7 +1,7 @@
 import matplotlib.pyplot as plt
 import numpy as np
 import numpy.typing as npt
-from matplotlib.axes import Axes
+import matplotlib.axes as mplaxes
 
 
 class Probe:
@@ -29,7 +29,7 @@ class Probe:
         self.x = self.O[0] + self.r * self.unit_vec[0]
         self.z = self.O[1] + self.r * self.unit_vec[1]
 
-    def plot_probe(self, ax: Axes, color=None):
+    def plot_probe(self, ax: mplaxes.Axes, color=None):
         ax.scatter(self.O[0], self.O[1], color=color)
         (a,) = ax.plot(
             [self.O[0], self.E[0]],

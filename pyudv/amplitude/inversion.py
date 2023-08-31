@@ -1,6 +1,5 @@
 import numpy as np
-from scipy.integrate import cumulative_trapezoid, trapezoid
-
+import scipy.integrate as scipyint
 from .direct_models import correction_factor
 
 r"""
@@ -9,7 +8,7 @@ Explicit inversion scheme --
 
 
 def _explicit_solution_form(f, B, Xi, r):
-    integral = cumulative_trapezoid(f, r, initial=0)
+    integral = scipyint.cumulative_trapezoid(f, r, initial=0)
     return f / (B - 4 * Xi * integral)
 
 
@@ -36,7 +35,7 @@ def explicit_inversion(MSV, r, Xi, alpha_w, psi, C0, r0, delta_r=None):
         f_zeroed = np.where(
             r_temp <= r0_brod, f, 0
         )  # putting 0 everywhere r < r0 to compute constant integrals
-        constant_int = trapezoid(f_zeroed, r_expanded)[..., None]
+        constant_int = scipyint.trapezoid(f_zeroed, r_expanded)[..., None]
         del f_zeroed
         ind_r0 = np.argmin(np.abs(r0_brod - r_expanded), axis=-1)
         constant_MSV = np.take_along_axis(f, ind_r0[..., None], axis=-1)
@@ -45,11 +44,11 @@ def explicit_inversion(MSV, r, Xi, alpha_w, psi, C0, r0, delta_r=None):
         f_zeroed = np.where(
             r_temp <= r0_brod + delta_r, f, 0
         )  # putting 0 everywhere r < r0 + delta_r to compute constant integrals
-        constant_int_pos = trapezoid(f_zeroed, r_expanded)[..., None]
+        constant_int_pos = scipyint.trapezoid(f_zeroed, r_expanded)[..., None]
         f_zeroed = np.where(
             r_temp <= r0_brod - delta_r, f, 0
         )  # putting 0 everywhere r < r0 - delta_r to compute constant integrals
-        constant_int_neg = trapezoid(f_zeroed, r_expanded)[..., None]
+        constant_int_neg = scipyint.trapezoid(f_zeroed, r_expanded)[..., None]
         #
         B = (
             4

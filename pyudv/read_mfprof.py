@@ -1,7 +1,7 @@
-from datetime import datetime, timedelta
+import datetime as dt
 
 import numpy as np
-from netCDF4 import Dataset
+import netCDF4
 
 Types = {
     "Frequency": np.int32,
@@ -256,7 +256,7 @@ def read_mfprof(fileName, SI_units=True, convert_time=True):
 
 def filetime_to_dt(ft):
     us = int(ft) // 10
-    return datetime(1601, 1, 1) + timedelta(microseconds=us)
+    return dt.datetime(1601, 1, 1) + dt.timedelta(microseconds=us)
 
 
 def velocity_from_UVPdata(
@@ -449,7 +449,7 @@ def create_variable(
 
 
 def mfprof_to_netcdf(input, output, add_attr=None, cut_zeros=True):
-    newfile = Dataset(output, "w", format="NETCDF4")
+    newfile = netCDF4.Dataset(output, "w", format="NETCDF4")
     #
     Data, Parameters, Info, Units = read_mfprof(input)
     amplitude_data = amplitude_from_mfprof_reading(Data, Parameters)

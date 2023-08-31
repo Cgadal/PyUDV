@@ -1,16 +1,18 @@
 import numpy as np
-from numpy.typing import ArrayLike, NDArray
-from scipy.interpolate import interp1d
+import numpy.typing as npt
+import scipy.interpolate as scipyinterp
 
 from pyudv.probes import Probe, compute_vertical_axis, probe_crossing_point
 
 
 def reconstruct_velocity(
-    u1: ArrayLike,
-    u2: ArrayLike,
-    probe1_pars: list[ArrayLike, float, list[float, ArrayLike]],
-    probe2_pars: list[ArrayLike, float, list[float, ArrayLike]],
-) -> tuple[NDArray, NDArray, NDArray, NDArray, NDArray, NDArray]:
+    u1: npt.ArrayLike,
+    u2: npt.ArrayLike,
+    probe1_pars: list[npt.ArrayLike, float, list[float, npt.ArrayLike]],
+    probe2_pars: list[npt.ArrayLike, float, list[float, npt.ArrayLike]],
+) -> tuple[
+    npt.NDArray, npt.NDArray, npt.NDArray, npt.NDArray, npt.NDArray, npt.NDArray
+]:
     """
     This function takes the velocities measured by two probes, and reconstruct the velocity field, assuming that it only depends on the vertical coordinate.
 
@@ -46,8 +48,8 @@ def reconstruct_velocity(
     # # Build common vertical axis
     z_interp, _, _ = compute_vertical_axis(probe1, probe2)
     # # interpolating velocity
-    interp1 = interp1d(probe1.z, u1)
-    interp2 = interp1d(probe2.z, u2)
+    interp1 = scipyinterp.interp1d(probe1.z, u1)
+    interp2 = scipyinterp.interp1d(probe2.z, u2)
     #
     u1_interp = interp1(z_interp)
     u2_interp = interp2(z_interp)
