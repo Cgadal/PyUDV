@@ -1,5 +1,6 @@
-from scipy.ndimage import uniform_filter1d, uniform_filter
 import os
+
+from scipy.ndimage import uniform_filter, uniform_filter1d
 
 
 def moving_std1d(arr, windows, axis=-1, **kwargs):
@@ -23,9 +24,9 @@ def moving_std1d(arr, windows, axis=-1, **kwargs):
 
     """
     # based on https://stackoverflow.com/a/18422519/9530017
-    c1 = uniform_filter1d(arr, windows, mode='constant', axis=axis, **kwargs)
-    c2 = uniform_filter1d(arr*arr, windows, mode='constant', axis=axis, **kwargs)
-    return ((c2 - c1*c1)**.5)
+    c1 = uniform_filter1d(arr, windows, mode="constant", axis=axis, **kwargs)
+    c2 = uniform_filter1d(arr * arr, windows, mode="constant", axis=axis, **kwargs)
+    return (c2 - c1 * c1) ** 0.5
 
 
 def moving_std(arr, size, **kwargs):
@@ -47,9 +48,9 @@ def moving_std(arr, size, **kwargs):
 
     """
     # based on https://stackoverflow.com/a/18422519/9530017
-    c1 = uniform_filter(arr, size, mode='constant', **kwargs)
-    c2 = uniform_filter(arr*arr, size, mode='constant', **kwargs)
-    return ((c2 - c1*c1)**.5)
+    c1 = uniform_filter(arr, size, mode="constant", **kwargs)
+    c2 = uniform_filter(arr * arr, size, mode="constant", **kwargs)
+    return (c2 - c1 * c1) ** 0.5
 
 
 def create_arboresence(path):
@@ -57,4 +58,4 @@ def create_arboresence(path):
     if not os.path.exists(path):
         if path[-1] != os.sep:
             path += os.sep
-        os.makedirs(path[:path.rindex(os.path.sep)], exist_ok=True)
+        os.makedirs(path[: path.rindex(os.path.sep)], exist_ok=True)
