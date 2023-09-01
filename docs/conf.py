@@ -47,7 +47,6 @@ extensions = [
 
 autosummary_generate = True  # Turn on sphinx.ext.autosummary
 autosummary_imported_members = True  # Also dosuments imports in __init__.py
-autoclass_content = "both"  # Add __init__ doc (ie. params) to class summaries
 # Remove 'view source code' from top of page (for html, not python)
 html_show_sourcelink = False
 autodoc_inherit_docstrings = True  # If no docstring, inherit from base class
@@ -57,6 +56,9 @@ nbsphinx_allow_errors = True  # Continue through Jupyter errors
 # autodoc_typehints = "description" # Sphinx-native method. Not as good as sphinx_autodoc_typehints
 add_module_names = False  # Remove namespaces from class/method signatures
 
+# The name of the Pygments (syntax highlighting) style to use.
+pygments_style = "sphinx"
+highlight_language = "python3"
 
 templates_path = ["_templates"]
 exclude_patterns = ["_build", "Thumbs.db", ".DS_Store"]
@@ -67,7 +69,7 @@ intersphinx_mapping = {
     "python": ("https://docs.python.org/{.major}".format(sys.version_info), None),
     "numpy": ("https://numpy.org/doc/stable/", None),
     "matplotlib": ("https://matplotlib.org/stable", None),
-    "scipy": ("https://docs.scipy.org/doc/scipy/reference/", None),
+    "scipy": ("https://docs.scipy.org/doc/scipy/", None),
 }
 
 examples_dirs = ["../examples"]
@@ -83,7 +85,7 @@ sphinx_gallery_conf = {
     "reference_url": {
         "pyudv": None,  # The module you locally document uses None
         "numpy": "https://docs.scipy.org/doc/numpy/",
-        "scipy": "https://docs.scipy.org/doc/scipy/reference/",
+        "scipy": "https://docs.scipy.org/doc/scipy/",
         "matplotlib": "https://matplotlib.org/stable",
     },
     "matplotlib_animations": True,
@@ -102,6 +104,7 @@ html_theme_options = {
     "logo": {
         "text": "pyudv",
     },
+    "github_url": "https://github.com/cgadal-pythonpackages/pyudv",
 }
 
 html_static_path = ["_static"]

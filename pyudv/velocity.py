@@ -2,7 +2,7 @@ import numpy as np
 import numpy.typing as npt
 import scipy.interpolate as scipyinterp
 
-from pyudv.probes import Probe, compute_vertical_axis, probe_crossing_point
+import pyudv.probes as pb
 
 
 def reconstruct_velocity(
@@ -29,24 +29,24 @@ def reconstruct_velocity(
 
     Returns
     -------
-    U : NDArray
+    U : ndarray
         reconstructed velocity components in the coordinate system corresponding to the one of the refernce points of the probes.
-    z_interp : NDArray
+    z_interp : ndarray
         coordinate vector corresponding to `U`
-    X : NDArray
+    X : ndarray
         crossing point of the probes
-    dx_1 : NDArray
+    dx_1 : ndarray
         horizontal distance between the first probe beam, and the vertical axis passing by the crossing point `X`
-    dx_2 : NDArray
+    dx_2 : ndarray
         horizontal distance between the second probe beam, and the vertical axis passing by the crossing point `X`
 
     """
     # # init probes
-    probe1 = Probe(*probe1_pars)
-    probe2 = Probe(*probe2_pars)
+    probe1 = pb.Probe(*probe1_pars)
+    probe2 = pb.Probe(*probe2_pars)
     #
     # # Build common vertical axis
-    z_interp, _, _ = compute_vertical_axis(probe1, probe2)
+    z_interp, _, _ = pb.compute_vertical_axis(probe1, probe2)
     # # interpolating velocity
     interp1 = scipyinterp.interp1d(probe1.z, u1)
     interp2 = scipyinterp.interp1d(probe2.z, u2)
@@ -60,7 +60,7 @@ def reconstruct_velocity(
     #
     # # other quantities
     # crossing point
-    X = probe_crossing_point(probe1, probe2)
+    X = pb.probe_crossing_point(probe1, probe2)
     # horizontal distances to the vertical axis passing by the crossing point
     dx_1 = np.tan(np.radians(probe1.alpha)) * (z_interp - X[1])
     dx_2 = np.tan(np.radians(probe2.alpha)) * (z_interp - X[1])
@@ -83,8 +83,8 @@ if __name__ == "__main__":
     probe1_pars = [r, alpha1, [0, O1]]
     probe2_pars = [r, alpha2, [0, O2]]
     #
-    probe1 = Probe(*probe1_pars)
-    probe2 = Probe(*probe2_pars)
+    probe1 = pb.Probe(*probe1_pars)
+    probe2 = pb.Probe(*probe2_pars)
     # make fake signals
     u1 = U(probe1.z).T @ probe1.unit_vec
     u2 = U(probe2.z).T @ probe2.unit_vec

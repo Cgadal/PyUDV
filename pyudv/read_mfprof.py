@@ -1,3 +1,8 @@
+"""
+This module allows you to read `.mfprof` files from Met-Flow UDVs, and extract the contained data.
+
+"""
+
 import datetime as dt
 
 import numpy as np
@@ -110,7 +115,7 @@ Absolute_gains = {
 }
 
 
-def read_mfprof(fileName, SI_units=True, convert_time=True):
+def read_mfprof(fileName: str, SI_units: bool = True, convert_time: bool = True):
     """Read .mfprof binary files of the Met-Flow UDV. This is mostly a direct python translation of the matlab script given by Met-Flow.
 
     Parameters
@@ -128,9 +133,9 @@ def read_mfprof(fileName, SI_units=True, convert_time=True):
         Dictionnary with the data stored in the mprof files. Available keys are: 'transducer', 'profileTime', 'DopplerData', 'AmplitudeData', 'DistanceAlongBeam'
     Parameters : dict
         Dictionnary with the parameters used in the UVP software when sampling the data. See UVP documentation for detail. Keys are: 'Frequency', 'StartChannel', 'ChannelDistance', 'ChannelWidth', 'MaximumDepth', 'SoundSpeed', 'Angle', 'GainStart', 'GainEnd', 'Voltage', 'Iterations', 'NoiseLevel', 'CyclesPerPulse', 'TriggerMode', 'TriggerModeName', 'ProfileLength', 'ProfilesPerBlock', 'Blocks', 'AmplitudeStored', 'DoNotStoreDoppler', 'RawDataMin', 'RawDataMax', 'RawDataRange', 'AmplDataMin', 'AmplDataMax', 'VelocityInterpretingMode', 'UserSampleTime', 'SampleTime', 'UseMultiplexer', 'FlowMapping', 'FirstValidChannel', 'LastValidChannel', 'FlowRateType', 'PeriodEnhOffset', 'PeriodEnhPeriod', 'PeriodEnhNCycles', 'Comment', 'MeasurementProtocol', 'NumberOfCycles', 'CycleDelay', 'Version', 'Table'
-    Infos
+    Infos: dict
         Dictionnary with some informations stored during sampling of the data. Keys are 'Signum', 'measParamsOffset', 'nProfiles', 'reserved1', 'flags', 'recordSize', 'nChannels', 'reserved2', 'startTime'.
-    Units1
+    Units: dict
         Dictionnary with the units of the variables stored in the other dictionnaries. Keys are the name of the variables.
 
     """
@@ -254,13 +259,13 @@ def read_mfprof(fileName, SI_units=True, convert_time=True):
     return Data, Parameters, Infos, Units
 
 
-def filetime_to_dt(ft):
-    us = int(ft) // 10
-    return dt.datetime(1601, 1, 1) + dt.timedelta(microseconds=us)
+# def filetime_to_dt(ft):
+#     us = int(ft) // 10
+#     return dt.datetime(1601, 1, 1) + dt.timedelta(microseconds=us)
 
 
 def velocity_from_UVPdata(
-    raw_data, SoundSpeed, MaximumDepth, Angle, Frequency, Nbytes=8
+    raw_data, SoundSpeed, MaximumDepth, Angle: float, Frequency: float, Nbytes: int = 8
 ):
     """Calculate velocity from UDV raw data. Units must be checked outside of this function - no conversion is done here.
 
@@ -296,16 +301,16 @@ def velocity_from_UVPdata(
     return Fd * SoundSpeed * Angle_correction / (2 * Frequency)
 
 
-def velocity_from_mfprof_reading(Data, Parameters, Nbytes=8):
-    """Calculate velocity from `Data` and `Parameters` dictionnaries as output of :func:`read_mfprof <read_mfprof.read_mfprof>`,
-    using the function :func:`velocity_from_UVPdata <read_mfprof.velocity_from_UVPdata>`.
+def velocity_from_mfprof_reading(Data: dict, Parameters: dict, Nbytes: int = 8):
+    """Calculate velocity from `Data` and `Parameters` dictionnaries as output of :func:`read_mfprof <pyudv.read_mfprof.read_mfprof>`,
+    using the function :func:`velocity_from_UVPdata <pyudv.read_mfprof.velocity_from_UVPdata>`.
 
     Parameters
     ----------
     Data : dict
-        Data dictionnary coming from :func:`read_mfprof <read_mfprof.read_mfprof>`.
+        Data dictionnary coming from :func:`read_mfprof <pyudv.read_mfprof.read_mfprof>`.
     Parameters : dict
-        Parameters dictionnary coming from :func:`read_mfprof <read_mfprof.read_mfprof>`.
+        Parameters dictionnary coming from :func:`read_mfprof <pyudv.read_mfprof.read_mfprof>`.
     Nbytes : int
         Number of bytes over which the raw data are coded (the default is 8).
 
@@ -328,7 +333,14 @@ def velocity_from_mfprof_reading(Data, Parameters, Nbytes=8):
 
 
 def amplitude_from_UVPdata(
-    raw_data, z, GainStart, GainEnd, zend, zstart=0.37 * 1e-3, Nbytes=14, deltaV=5
+    raw_data,
+    z,
+    GainStart,
+    GainEnd,
+    zend: float,
+    zstart: float = 0.37 * 1e-3,
+    Nbytes: int = 14,
+    deltaV: float = 5,
 ):
     """Correct the raw amplitude data as outut of the UVP-DUO.
 
@@ -342,9 +354,9 @@ def amplitude_from_UVPdata(
         start absolute gain.
     GainEnd : scalar
         end absolute gain.
-    zend : type
+    zend : float
         Maximum measurable distance by the UVP.
-    zstart : type
+    zstart : float
         minimum measurable distance by the UVP (the default is 0.00037)).
     Nbytes : int
         Number of bytes over which the raw data are coded (the default is 14).
@@ -366,16 +378,18 @@ def amplitude_from_UVPdata(
     )
 
 
-def amplitude_from_mfprof_reading(Data, Parameters, Nbytes=14, deltaV=5):
-    """Calculate the unamplified/corrected echo signal from `Data` and `Parameters` dictionnaries as output of :func:`read_mfprof <read_mfprof.read_mfprof>`,
-    using the function :func:`amplitude_from_UVPdata <read_mfprof.amplitude_from_UVPdata>`.
+def amplitude_from_mfprof_reading(
+    Data: dict, Parameters: dict, Nbytes: int = 14, deltaV: float = 5
+):
+    """Calculate the unamplified/corrected echo signal from `Data` and `Parameters` dictionnaries as output of :func:`read_mfprof <pyudv.read_mfprof.read_mfprof>`,
+    using the function :func:`amplitude_from_UVPdata <pyudv.read_mfprof.amplitude_from_UVPdata>`.
 
     Parameters
     ----------
     Data : dict
-        Data dictionnary coming from :func:`read_mfprof <read_mfprof.read_mfprof>`.
+        Data dictionnary coming from :func:`read_mfprof <pyudv.read_mfprof.read_mfprof>`.
     Parameters : dict
-        Parameters dictionnary coming from :func:`read_mfprof <read_mfprof.read_mfprof>`.
+        Parameters dictionnary coming from :func:`read_mfprof <pyudv.read_mfprof.read_mfprof>`.
     Nbytes : int
         Number of bytes over which the raw data are coded (the default is 14).
     deltaV : int
@@ -402,9 +416,9 @@ def amplitude_from_mfprof_reading(Data, Parameters, Nbytes=14, deltaV=5):
 # #### Writing functions
 
 
-def write_dictionnary(dico, file):
+def write_dictionnary(dico: dict, file: str):
     """Write parameter dictionnary to a .txt file.
-    Each line of this file is a dictionnary key, followed by the corresponding entry, directly converted using `str()`.
+    Each line of this file is a dictionnary key, followed by the corresponding entry, directly converted using :func:`str <str>`.
 
     Parameters
     ----------
@@ -425,7 +439,7 @@ def write_dictionnary(dico, file):
             f.write(line)
 
 
-def create_variable(
+def _create_variable(
     netcdf_group,
     name,
     data,
@@ -448,10 +462,30 @@ def create_variable(
         var.comments = comments
 
 
-def mfprof_to_netcdf(input, output, add_attr=None, cut_zeros=True):
-    newfile = netCDF4.Dataset(output, "w", format="NETCDF4")
+def mfprof_to_netcdf(
+    input_mfprof: str, output_netcdf: str, add_attr: dict = None, cut_zeros: bool = True
+):
+    """
+    Convert a .mfprof file to a netCDF file.
+
+    Parameters
+    ----------
+    input_mfprof : str
+        input .mfprof file path
+    output_netcdf : str
+        output netCDF file path
+    add_attr : dict, optional
+        dictionnary containing attributes to be added to the netCDF file, by default None. For example, `add_attr = {name: 'John Smith', team: 'the best'}`
+    cut_zeros : bool, optional
+        If True, cut the measurements data and remove all the trailing 0 added when the measurements are stopped bedore the attributed time, by default True
+
+    Example
+    -------
+    >>> mfprof_to_netcdf('input.mfprof', 'output.nc', add_attr = {name: 'John Smith', team: 'the best'}, cut_zeros=True)
+    """
+    newfile = netCDF4.Dataset(output_netcdf, "w", format="NETCDF4")
     #
-    Data, Parameters, Info, Units = read_mfprof(input)
+    Data, Parameters, Info, Units = read_mfprof(input_mfprof)
     amplitude_data = amplitude_from_mfprof_reading(Data, Parameters)
     velocity_data = velocity_from_mfprof_reading(Data, Parameters)
     #
@@ -472,21 +506,21 @@ def mfprof_to_netcdf(input, output, add_attr=None, cut_zeros=True):
         else:
             dims = ("z", "time")
         #
-        create_variable(
+        _create_variable(
             newfile,
             key,
             var[..., :tmax] if key != "DistanceAlongBeam" else var,
             dimensions=dims,
             unit=Units[key] if key in Units.keys() else None,
         )
-    create_variable(
+    _create_variable(
         newfile,
         "amplitude_data",
         amplitude_data[..., :tmax],
         dimensions=("z", "time"),
         unit="V",
     )
-    create_variable(
+    _create_variable(
         newfile,
         "velocity_data",
         velocity_data[..., :tmax],

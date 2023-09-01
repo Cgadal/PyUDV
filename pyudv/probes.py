@@ -1,3 +1,7 @@
+"""
+This module helps you deal with probe geometries.
+"""
+
 import matplotlib.pyplot as plt
 import numpy as np
 import numpy.typing as npt
@@ -5,31 +9,73 @@ import matplotlib.axes as mplaxes
 
 
 class Probe:
+    """
+     A class used to represent a single probe.
+
+    Parameters
+    ----------
+    r : ndarray, (N,)
+        a numpy array containing the radial coordinates of the beam.
+    alpha : float
+        orientation of the probe, in degree in the trigonometric referential.
+    Pref : list[float, ndarray]
+        A list a size 2 defining a reference point by containing its radial coordinate, and a numpy array containing its coordinate in the "real" reference space.
+    """
+
+    a = 1  #: test
+
     def __init__(
         self,
-        r: npt.ArrayLike,
+        r: npt.NDArray,
         alpha: float,
-        Pref: list[float, npt.ArrayLike],
+        Pref: list[float, npt.NDArray],
     ):
-        self.r = r  # vector along beam axis
-        self.alpha = alpha  # beam axis inclination, trigo referential
-        self.Pref = Pref  # refernce point [r_ref, (x_ref, y_ref)]
+        """
+        Parameters
+        ----------
+        r : ndarray
+            a numpy array containing the radial coordinates of the beam.
+        alpha : float
+            orientation of the probe, in degree in the trigonometric referential.
+        Pref : list[float, ndarray]
+            A list a size 2 defining a reference point by containing its radial coordinate, and a numpy array containing its coordinate in the "real" reference space.
+        """
+
+        self.r = r  #: vector along beam axis
+        self.alpha = alpha  #: beam axis inclination, trigo referential
+        self.Pref = Pref  #: refernce point [r_ref, (x_ref, y_ref)]
         #
-        self.r_ref = self.Pref[0]
-        self.X_ref = self.Pref[1]
+        self.r_ref = self.Pref[0]  #: reference point radial coordinats
+        self.X_ref = self.Pref[1]  #: reference point real coordinates
         self.unit_vec = np.array(
             [np.cos(np.radians(alpha)), np.sin(np.radians(alpha))]
-        )  # beam unit vector in real coordinates
-        self.O = Pref[1] - Pref[0] * self.unit_vec  # Beam origin in real coordinates
+        )  #: unit vector defining the beam direction in real coordinates
+        self.O = (
+            Pref[1] - Pref[0] * self.unit_vec
+        )  #: coordinates of the origin of the beam
         self.E = (
             self.X_ref + (r.max() - self.r_ref) * self.unit_vec
-        )  # Beam end in real coordinates
+        )  #: coordinates of the end of the beam
 
         # Beam coordinates
-        self.x = self.O[0] + self.r * self.unit_vec[0]
-        self.z = self.O[1] + self.r * self.unit_vec[1]
+        self.x = (
+            self.O[0] + self.r * self.unit_vec[0]
+        )  #: horizontal coordinates of the points along the beam
+        self.z = (
+            self.O[1] + self.r * self.unit_vec[1]
+        )  #: vertical coordinates of the points along the beam
 
-    def plot_probe(self, ax: mplaxes.Axes, color=None):
+    def plot_probe(self, ax: mplaxes.Axes, color: str = None):
+        """
+        Sketch the probe and its beam on a given matplotlib axe.
+
+        Parameters
+        ----------
+        ax : mplaxes.Axes
+            matplotlib axe on which the probe is sketched.
+        color : str, optional
+            probe color, by default None
+        """
         ax.scatter(self.O[0], self.O[1], color=color)
         (a,) = ax.plot(
             [self.O[0], self.E[0]],
@@ -48,11 +94,27 @@ class Probe:
 
 def sketch_probes(
     probes: list[Probe],
-    combinations: list[tuple] = None,
-    ax=None,
+    combinations: list[tuple[int, int]] = None,
+    ax: mplaxes.Axes = None,
     probe_colors: list[str] = None,
     combination_colors: list[str] = None,
 ):
+    """
+    Sketch multiple probes, and optionaly their intersections, etc ...
+
+    Parameters
+    ----------
+    probes : list[Probe]
+        list of :class:`Probe <pyudv.probes.Probe>` object to be sketched.
+    combinations : list[tuple[int, int]], optional
+        list of tuple of size 2 containing indexes of `probes` whose intersection should be sketched.
+    ax : mplaxes.Axes, optional
+        matplotlib axe on which the sketch is drawn. If None, a new figure is created (default is None).
+    probe_colors : list[str], optional
+        list of colors for the probes, by default None. It should be the same size as `probes`.
+    combination_colors : list[str], optional
+        list of colors for the intersetctions, by default None. It should be the same size as `combinations`.
+    """
     if ax is None:
         fig, ax = plt.subplots(1, 1, layout="constrained")
     ax.set_aspect("equal")
@@ -75,7 +137,22 @@ def sketch_probes(
             ax.plot([X[0], X[0]], [z_min, z_max], color=combination_color)
 
 
-def probe_crossing_point(probe1: Probe, probe2: Probe):
+def probe_crossing_point(probe1: Probe, probe2: Probe) -> npt.NDArray:
+    """
+    calculate the crossing point of two probe beams.
+
+    Parameters
+    ----------
+    probe1 : Probe
+        First :class:`Probe <pyudv.probes.Probe>` object.
+    probe2 : Probe
+        Second :class:`Probe <pyudv.probes.Probe>` object.
+
+    Returns
+    -------
+    ndarray, (2. )
+        coordinates of the crossing point.
+    """
     M = np.array([-probe1.unit_vec, probe2.unit_vec]).T
     S = probe1.O - probe2.O
     T = np.linalg.inv(M) @ S
@@ -84,6 +161,25 @@ def probe_crossing_point(probe1: Probe, probe2: Probe):
 
 
 def compute_vertical_axis(probe1: Probe, probe2: Probe):
+    """
+    compute the common vertical axis between two probe beams.
+
+    Parameters
+    ----------
+    probe1 : Probe
+        First :class:`Probe <pyudv.probes.Probe>` object.
+    probe2 : Probe
+        Second :class:`Probe <pyudv.probes.Probe>` object.
+
+    Returns
+    -------
+    z_interp : ndarray
+        numpy array containg the vertical coordinates of the common axis.
+    z_min : float
+        minimal vertical coordinate
+    z_max : float
+        maximal vertical coordinate
+    """
     z_min = max(probe1.z.min(), probe2.z.min())
     z_max = min(probe1.z.max(), probe2.z.max())
     n_pts = (
