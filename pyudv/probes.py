@@ -22,8 +22,6 @@ class Probe:
         A list a size 2 defining a reference point by containing its radial coordinate, and a numpy array containing its coordinate in the "real" reference space.
     """
 
-    a = 1  #: test
-
     def __init__(
         self,
         r: npt.NDArray,
