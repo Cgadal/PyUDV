@@ -27,7 +27,7 @@ class Probe:
         r: npt.NDArray,
         alpha: float,
         Pref: list[float, npt.NDArray],
-    ):
+    ) -> None:
         """
         Parameters
         ----------

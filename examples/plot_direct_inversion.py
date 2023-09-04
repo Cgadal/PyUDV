@@ -47,8 +47,10 @@ Phi = np.array([0.0001, 0.002, 0.005, 0.01, 0.02, 0.05, 0.1])
 # %%
 # Influence of the imposed point in the integration
 # =================================================
+#
+# without near field function
+# ^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-# #### without near field function
 psi = DM.near_field_theoretical(r, rn) * 0 + 1  # near field function
 # defining a constant grain concentration profile
 C = Phi[:, None] * rho * (r[None, :] * 0 + 1)
@@ -88,7 +90,12 @@ secax.set_xlabel("Volumic fraction")
 plt.legend(title="Distance of imposed concentration [mm]")
 plt.title("Without near field")
 
-# #### with near field function
+plt.show()
+
+# %%
+# with near field function
+# ^^^^^^^^^^^^^^^^^^^^^^^^
+
 psi = DM.near_field_theoretical(r, rn)  # near field function
 # defining a constant grain concentration profile
 C = Phi[:, None] * rho * (r[None, :] * 0 + 1)
@@ -126,7 +133,12 @@ secax.set_xlabel("Volumic fraction")
 plt.legend(title="Distance of imposed concentration [mm]")
 plt.title("With near field")
 
-# #### with real type concentration profiles
+plt.show()
+
+# %%
+# with real type concentration profiles
+# ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
 psi = DM.near_field_theoretical(r, rn)  # near field function
 # C = Phi[:, None]*rho*np.exp(-r[None, :]/1)  # defining an exponentially decreasing profile
 # C = Phi[:, None]*rho*np.exp(r[None, :]/10)  # defining an exponentially increasing profile
@@ -166,6 +178,5 @@ secax = ax.secondary_xaxis("top", functions=(C_to_phi, phi_to_C))
 secax.set_xlabel("Volumic fraction")
 plt.legend(title="Distance of imposed concentration [mm]")
 plt.title("With exponential concentration profiles")
-
 
 plt.show()

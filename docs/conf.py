@@ -46,7 +46,7 @@ extensions = [
 ]
 
 autosummary_generate = True  # Turn on sphinx.ext.autosummary
-autosummary_imported_members = True  # Also dosuments imports in __init__.py
+autosummary_imported_members = True  # Also documents imports in __init__.py
 # Remove 'view source code' from top of page (for html, not python)
 html_show_sourcelink = False
 autodoc_inherit_docstrings = True  # If no docstring, inherit from base class
