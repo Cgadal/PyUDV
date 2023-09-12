@@ -7,8 +7,7 @@ Probes and velocity reconstruction
 import matplotlib.pyplot as plt
 import numpy as np
 
-from pyudv.velocity import reconstruct_velocity
-from pyudv.geometry import Probe, sketch_probes
+from pyudv.geometry import Probe, sketch_probes, reconstruct_velocity
 
 
 def U(z):
@@ -54,7 +53,7 @@ u2 = U(probe2.z).T @ probe2.unit_vec
 # Velocity reconstruction
 # =======================
 
-U_rec, z_interp, X, dx_1, dx_2 = reconstruct_velocity(u1, u2, probe1_pars, probe2_pars)
+U_rec, z_interp, X, dx_1, dx_2 = reconstruct_velocity(u1, u2, probe1, probe2)
 U_th = U(z_interp)
 #
 fig, axarr = plt.subplots(1, 2, layout="constrained", sharey=True)
