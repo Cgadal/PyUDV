@@ -8,7 +8,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 
 from pyudv.velocity import reconstruct_velocity
-from pyudv.probes import Probe, sketch_probes
+from pyudv.geometry import Probe, sketch_probes
 
 
 def U(z):

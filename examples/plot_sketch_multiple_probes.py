@@ -7,7 +7,7 @@ Sketch multiple probes
 import matplotlib.pyplot as plt
 import numpy as np
 
-from pyudv.probes import Probe, sketch_probes
+from pyudv.geometry import Probe, sketch_probes
 
 # ## define probes
 r = np.linspace(0, 5, 100)  # beam radial coordiantes, same for all probes

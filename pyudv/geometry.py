@@ -2,10 +2,13 @@
 This module helps you deal with probe geometries.
 """
 
+import matplotlib.axes as mplaxes
 import matplotlib.pyplot as plt
 import numpy as np
 import numpy.typing as npt
-import matplotlib.axes as mplaxes
+import scipy.interpolate as scipyinterp
+
+import pyudv.helpers as ph
 
 
 class Probe:
@@ -41,7 +44,7 @@ class Probe:
 
         self.r = r  #: vector along beam axis
         self.alpha = alpha  #: beam axis inclination, trigo referential
-        self.Pref = Pref  #: refernce point [r_ref, (x_ref, y_ref)]
+        self.Pref = Pref  #: reference point [r_ref, (x_ref, y_ref)]
         #
         self.r_ref = self.Pref[0]  #: reference point radial coordinats
         self.X_ref = self.Pref[1]  #: reference point real coordinates
@@ -178,17 +181,123 @@ def compute_vertical_axis(probe1: Probe, probe2: Probe):
     z_max : float
         maximal vertical coordinate
     """
-    z_min = max(probe1.z.min(), probe2.z.min())
-    z_max = min(probe1.z.max(), probe2.z.max())
-    n_pts = (
-        ((probe1.z <= z_max) & (probe1.z >= z_min)).sum()
-        + ((probe2.z <= z_max) & (probe2.z >= z_min)).sum()
-    ) / 2
-    z_interp = np.linspace(z_min, z_max, int(n_pts))
-    return z_interp, z_min, z_max
+    return ph.compute_common_part(probe1.z, probe2.z)
+
+
+def reconstruct_velocity(
+    u1: npt.ArrayLike, u2: npt.ArrayLike, probe1: Probe, probe2: Probe
+) -> tuple[
+    npt.NDArray, npt.NDArray, npt.NDArray, npt.NDArray, npt.NDArray, npt.NDArray
+]:
+    """
+    This function takes the velocities measured by two probes, and reconstruct the velocity field, assuming that it only depends on the vertical coordinate.
+
+    Parameters
+    ----------
+    u1 : ArrayLike
+        velocity vector measured by first probe. The first dimension should be the same dimension as the radial coordinate contained in `probe1.z`.
+    u2 : ArrayLike
+        velocity vector measured by second probe. The first dimension should be the same dimension as the radial coordinate contained in `probe2.z`.
+    probe1 : Probe
+        First :class:`Probe <pyudv.probes.Probe>` object.
+    probe2 : Probe
+        Second :class:`Probe <pyudv.probes.Probe>` object.
+
+    Returns
+    -------
+    U : ndarray
+        reconstructed velocity components in the coordinate system corresponding to the one of the reference points of the probes.
+    z_interp : ndarray
+        coordinate vector corresponding to `U`
+    X : ndarray
+        crossing point of the probes
+    dx_1 : ndarray
+        horizontal distance between the first probe beam, and the vertical axis passing by the crossing point `X`
+    dx_2 : ndarray
+        horizontal distance between the second probe beam, and the vertical axis passing by the crossing point `X`
+
+    """
+    # # Build common vertical axis
+    z_interp, _, _ = compute_vertical_axis(probe1, probe2)
+    # # interpolating velocity
+    interp1 = scipyinterp.interp1d(probe1.z, u1, axis=0)
+    interp2 = scipyinterp.interp1d(probe2.z, u2, axis=0)
+    #
+    u1_interp = interp1(z_interp)
+    u2_interp = interp2(z_interp)
+    #
+    # velocity reconstruction
+    M = np.array([probe1.unit_vec, probe2.unit_vec])
+    # U = np.linalg.inv(M) @ np.array([u1_interp, u2_interp])
+    U = np.einsum(
+        "ij, jk... -> ik...", np.linalg.inv(M), np.array([u1_interp, u2_interp])
+    )
+    #
+    # # other quantities
+    # crossing point
+    X = probe_crossing_point(probe1, probe2)
+    # horizontal distances to the vertical axis passing by the crossing point
+    dx_1 = np.tan(np.radians(probe1.alpha)) * (z_interp - X[1])
+    dx_2 = np.tan(np.radians(probe2.alpha)) * (z_interp - X[1])
+    return U, z_interp, X, dx_1, dx_2
+
+
+def average_amplitude(
+    a1: npt.ArrayLike, a2: npt.ArrayLike, probe1: Probe, probe2: Probe
+) -> tuple[
+    npt.NDArray, npt.NDArray, npt.NDArray, npt.NDArray, npt.NDArray, npt.NDArray
+]:
+    """
+    This function takes the amplitude measured by two probes and average them, assuming that it only depends on the vertical coordinate.
+
+    Parameters
+    ----------
+    a1 : npt.ArrayLike
+        amplitude measured by first probe. The first dimension should be the same dimension as the radial coordinate contained in `probe1.z`.
+    a2 : npt.ArrayLike
+        amplitude measured by second probe. The first dimension should be the same dimension as the radial coordinate contained in `probe2.z`.
+    probe1 : Probe
+        First :class:`Probe <pyudv.probes.Probe>` object.
+    probe2 : Probe
+        Second :class:`Probe <pyudv.probes.Probe>` object.
+
+    Returns
+    -------
+    A : ndarray
+        averaged amplitud in the coordinate system corresponding to the one of the reference points of the probes.
+    z_interp : ndarray
+        coordinate vector corresponding to `U`
+    X : ndarray
+        crossing point of the probes
+    dx_1 : ndarray
+        horizontal distance between the first probe beam, and the vertical axis passing by the crossing point `X`
+    dx_2 : ndarray
+        horizontal distance between the second probe beam, and the vertical axis passing by the crossing point `X`
+
+    """
+    # # Build common vertical axis
+    z_interp, _, _ = compute_vertical_axis(probe1, probe2)
+    # # interpolating velocity
+    interp1 = scipyinterp.interp1d(probe1.z, a1, axis=0)
+    interp2 = scipyinterp.interp1d(probe2.z, a2, axis=0)
+    #
+    a1_interp = interp1(z_interp)
+    a2_interp = interp2(z_interp)
+    #
+    # # other quantities
+    # crossing point
+    X = probe_crossing_point(probe1, probe2)
+    # horizontal distances to the vertical axis passing by the crossing point
+    dx_1 = np.tan(np.radians(probe1.alpha)) * (z_interp - X[1])
+    dx_2 = np.tan(np.radians(probe2.alpha)) * (z_interp - X[1])
+    return (a1_interp + a2_interp) / 2, z_interp, X, dx_1, dx_2
 
 
 if __name__ == "__main__":
+    #
+    import matplotlib.pyplot as plt
+
+    # # Test Probe object definition
     r = np.linspace(0, 5, 100)
     alpha1, alpha2 = -120, -70  # deg
     O1, O2 = np.array([1, 8]), np.array([-1, 7])
@@ -204,3 +313,29 @@ if __name__ == "__main__":
         probe_colors=[None, None],
         combination_colors=["k"],
     )
+
+    # #### Test velocity reconstruction
+    def U(z):
+        u = 5 * (5 - z) ** 2
+        v = u / 10
+        U = np.array([u, v])
+        return U
+
+    #
+    # make fake signals
+    u1 = U(probe1.z).T @ probe1.unit_vec
+    u2 = U(probe2.z).T @ probe2.unit_vec
+    #
+    # #### reconstruction
+    U_rec, z_interp, X, dx_1, dx_2 = reconstruct_velocity(u1, u2, probe1, probe2)
+    U_th = U(z_interp)
+    #
+    fig, axarr = plt.subplots(1, 2, layout="constrained", sharey=True)
+    for ax, u_th, u_rec in zip(axarr, U_th, U_rec):
+        ax.plot(u_th, z_interp, ".", label="base")
+        ax.plot(u_rec, z_interp, ".", label="reconstructed")
+        ax.legend()
+    axarr[0].set_xlabel("u")
+    axarr[1].set_xlabel("v")
+    axarr[0].set_ylabel("z")
+    plt.show()
