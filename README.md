@@ -3,8 +3,7 @@
 pyudv is a python package allowing to read and process UDV data. The main modules are:
 
 - `pyudv.read_mfprof`, which helps you read binary files from Met-Flow UDVs
-- `pyudv.probes`, which helps you plot the various probes, calculate the intersection points, etc ..
-- `pyudv.velocity`, which helps you reconstruct 2D velocity fields from the various probes measurements
+- `pyudv.geometry`, which helps you plot deal with multiple probe arragments, calculate the intersection points, reconstruct 2D velocity fields, etc ..
 - `pyudv.amplitude`, which helps you infer concentration from amplitude measurements
 
 > [!WARNING]  
