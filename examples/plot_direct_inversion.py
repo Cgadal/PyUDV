@@ -7,9 +7,9 @@ Concentration inference from amplitude signals
 import matplotlib.pyplot as plt
 import numpy as np
 
-import pyudv.amplitude.direct_models as DM
-from pyudv.amplitude.inversion import explicit_inversion
-from pyudv.amplitude.sediment_acoustic_models import quartz_sand as quartz
+import pyudv.attenuation.direct_models as DM
+from pyudv.attenuation.inversion import explicit_inversion
+from pyudv.attenuation.sediment_acoustic_models import quartz_sand as quartz
 
 
 def C_to_phi(C, rho=2.65e3):
@@ -71,7 +71,7 @@ for i, phi in enumerate(Phi):
 for j, index in enumerate(indexes):
     C0 = C[:, index]
     r0 = r[index]
-    C_inferred = explicit_inversion(MSV, r, Xi, a_w, psi, C0, r0)
+    C_inferred, *_ = explicit_inversion(MSV, r, Xi, a_w, psi, C0, r0)
     for i, phi in enumerate(Phi):
         if i == 0:
             plt.plot(
@@ -79,6 +79,7 @@ for j, index in enumerate(indexes):
             )
         else:
             plt.plot(C_inferred[i, :], r, lw=2.5 - (j + 1) / 3, color=color[i])
+        ax.scatter(C0[i], r0, color=color[i]),
 plt.xlabel("Concentration~[kg/m3]")
 plt.ylabel("Distance from transducer~[m]")
 ax.set_xscale("log")
@@ -114,7 +115,7 @@ for i, phi in enumerate(Phi):
 for j, index in enumerate(indexes):
     C0 = C[:, index]
     r0 = r[index]
-    C_inferred = explicit_inversion(MSV, r, Xi, a_w, psi * 0 + 1, C0, r0)
+    C_inferred, *_ = explicit_inversion(MSV, r, Xi, a_w, psi * 0 + 1, C0, r0)
     for i, phi in enumerate(Phi):
         if i == 0:
             plt.plot(
@@ -140,10 +141,14 @@ plt.show()
 # ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 psi = DM.near_field_theoretical(r, rn)  # near field function
-# C = Phi[:, None]*rho*np.exp(-r[None, :]/1)  # defining an exponentially decreasing profile
-# C = Phi[:, None]*rho*np.exp(r[None, :]/10)  # defining an exponentially increasing profile
-C = Phi[:, None] * rho * (r[None, :] * 0 + 1)  # defining sedimentation-like profile
-C[..., :230] = 0
+# C = (
+#     Phi[:, None] * rho * np.exp(-r[None, :] / 1)
+# )  # defining an exponentially decreasing profile
+C = (
+    Phi[:, None] * rho * np.exp(r[None, :] / 10)
+)  # defining an exponentially increasing profile
+# C = Phi[:, None] * rho * (r[None, :] * 0 + 1)  # defining sedimentation-like profile
+# C[..., :230] = 0
 #
 MSV = DM.create_MSvoltage(C, r[None, :], Xi, a_w, Ks, Kt, psi[None, :])
 #
@@ -160,7 +165,7 @@ for i, phi in enumerate(Phi):
 for j, index in enumerate(indexes):
     C0 = C[:, index]
     r0 = r[index]
-    C_inferred = explicit_inversion(MSV, r, Xi, a_w, psi * 0 + 1, C0, r0)
+    C_inferred, *_ = explicit_inversion(MSV, r, Xi, a_w, psi * 0 + 1, C0, r0)
     for i, phi in enumerate(Phi):
         if i == 0:
             plt.plot(
@@ -168,6 +173,7 @@ for j, index in enumerate(indexes):
             )
         else:
             plt.plot(C_inferred[i, :], r, lw=2.5 - (j + 1) / 3, color=color[i])
+        #
 plt.xlabel("Concentration~[kg/m3]")
 plt.ylabel("Distance from transducer~[m]")
 ax.set_xscale("log")

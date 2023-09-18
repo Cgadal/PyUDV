@@ -2,6 +2,7 @@ import os
 
 import numpy as np
 import numpy.typing as npt
+import uncertainties.unumpy as unp
 from scipy.ndimage import uniform_filter, uniform_filter1d
 
 

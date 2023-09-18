@@ -59,12 +59,58 @@ class Probe:
         )  #: coordinates of the end of the beam
 
         # Beam coordinates
-        self.x = (
-            self.O[0] + self.r * self.unit_vec[0]
-        )  #: horizontal coordinates of the points along the beam
-        self.z = (
-            self.O[1] + self.r * self.unit_vec[1]
-        )  #: vertical coordinates of the points along the beam
+        self.x = self.r_to_x(self.r)
+        self.z = self.r_to_z(self.r)
+
+    def r_to_z(self, r: np.ndarray | float) -> np.ndarray | float:
+        """
+        Convert radial coordinates of the probe into z coordinates
+
+        Parameters
+        ----------
+        r : np.ndarray | float
+            radial coordinate
+
+        Returns
+        -------
+        np.ndarray | float
+            corresponding z coordinate
+        """
+        return self.O[1] + r * self.unit_vec[1]
+
+    def r_to_x(self, r: np.ndarray | float) -> np.ndarray | float:
+        """
+        Convert radial coordinates of the probe into x coordinates
+
+        Parameters
+        ----------
+        r : np.ndarray | float
+            corresponding x coordinate
+
+        Returns
+        -------
+        np.ndarray | float
+            corresponding z coordinate
+        """
+        return self.O[0] + r * self.unit_vec[0]
+
+    def xz_to_r(self, xz: np.ndarray, axis=-1) -> np.ndarray:
+        """
+        Convert xz coordinates into probe radial coordinates
+
+        Parameters
+        ----------
+        xz : np.ndarray
+            xz coordinate
+        axis : int, optional
+            axis along which the norm is calculated, by default -1
+
+        Returns
+        -------
+        np.ndarray
+            radial coordinates
+        """
+        return np.linalg.norm(xz - self.O, axis=axis)
 
     def plot_probe(self, ax: mplaxes.Axes, color: str = None):
         """

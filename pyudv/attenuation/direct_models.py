@@ -151,5 +151,5 @@ def create_MSvoltage(C, r, Xi, alpha_w, Ks, Kt, psi):
         integral = 0
     else:
         integral = cumulative_trapezoid(Xi * C + 0 * r, r + 0 * C, initial=0)
-    factor = correction_factor(r, alpha_w, psi, Ks, Kt)
+    factor = correction_factor(r, alpha_w, Ks, Kt, psi)
     return C * np.exp(-4 * integral) * factor
