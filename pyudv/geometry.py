@@ -136,7 +136,7 @@ class Probe:
         ax.annotate(
             "",
             xytext=self.O,
-            xy=self.O + (self.r.max() - self.r.min()) / 10 * self.unit_vec,
+            xy=self.O + np.linalg.norm((self.E - self.O)) / 10 * self.unit_vec,
             arrowprops=dict(arrowstyle="->", color=a.get_color()),
         )
 
