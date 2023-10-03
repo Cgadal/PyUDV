@@ -1,8 +1,6 @@
 import os
 
 import numpy as np
-import numpy.typing as npt
-import uncertainties.unumpy as unp
 from scipy.ndimage import uniform_filter, uniform_filter1d
 
 
@@ -29,7 +27,7 @@ def moving_std1d(arr, windows, axis=-1, **kwargs):
     # based on https://stackoverflow.com/a/18422519/9530017
     c1 = uniform_filter1d(arr, windows, mode="constant", axis=axis, **kwargs)
     c2 = uniform_filter1d(arr * arr, windows, mode="constant", axis=axis, **kwargs)
-    return (c2 - c1 * c1) ** 0.5
+    return (c2 - c1*c1)**0.5
 
 
 def moving_std(arr, size, **kwargs):
@@ -53,12 +51,10 @@ def moving_std(arr, size, **kwargs):
     # based on https://stackoverflow.com/a/18422519/9530017
     c1 = uniform_filter(arr, size, mode="constant", **kwargs)
     c2 = uniform_filter(arr * arr, size, mode="constant", **kwargs)
-    return (c2 - c1 * c1) ** 0.5
+    return (c2 - c1*c1)**0.5
 
 
-def compute_common_part(
-    vec1: np.ndarray, vec2: np.ndarray
-) -> tuple[np.ndarray, float, float]:
+def compute_common_part(vec1: np.ndarray, vec2: np.ndarray) -> tuple[np.ndarray, float, float]:
     """
     Compute the common part between two vector, and return it. If it is not exactly colocated, it returns a interpolation with the same number of points betwen the bounds common to the two arrays.
 
@@ -80,10 +76,7 @@ def compute_common_part(
     """
     z_min = np.nanmax([np.nanmin(vec1), np.nanmin(vec2)])
     z_max = np.min([np.nanmax(vec1), np.nanmax(vec2)])
-    n_pts = (
-        ((vec1 <= z_max) & (vec1 >= z_min)).sum()
-        + ((vec2 <= z_max) & (vec2 >= z_min)).sum()
-    ) / 2
+    n_pts = (((vec1 <= z_max) & (vec1 >= z_min)).sum() + ((vec2 <= z_max) & (vec2 >= z_min)).sum()) / 2
     z_interp = np.linspace(z_min, z_max, int(n_pts))
     return z_interp, z_min, z_max
 
@@ -93,4 +86,4 @@ def create_arboresence(path):
     if not os.path.exists(path):
         if path[-1] != os.sep:
             path += os.sep
-        os.makedirs(path[: path.rindex(os.path.sep)], exist_ok=True)
+        os.makedirs(path[:path.rindex(os.path.sep)], exist_ok=True)

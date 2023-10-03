@@ -27,9 +27,9 @@ class Probe:
 
     def __init__(
         self,
-        r: npt.NDArray,
+        r: np.ndarray,
         alpha: float,
-        Pref: list[float, npt.NDArray],
+        Pref: list[float, np.ndarray],
     ) -> None:
         """
         Parameters
@@ -48,15 +48,10 @@ class Probe:
         #
         self.r_ref = self.Pref[0]  #: reference point radial coordinats
         self.X_ref = self.Pref[1]  #: reference point real coordinates
-        self.unit_vec = np.array(
-            [np.cos(np.radians(alpha)), np.sin(np.radians(alpha))]
-        )  #: unit vector defining the beam direction in real coordinates
-        self.O = (
-            Pref[1] - Pref[0] * self.unit_vec
-        )  #: coordinates of the origin of the beam
-        self.E = (
-            self.X_ref + (r.max() - self.r_ref) * self.unit_vec
-        )  #: coordinates of the end of the beam
+        self.unit_vec = np.array([np.cos(np.radians(alpha)), np.sin(np.radians(alpha))
+                                  ])  #: unit vector defining the beam direction in real coordinates
+        self.O = (Pref[1] - Pref[0] * self.unit_vec)  #: coordinates of the origin of the beam
+        self.E = (self.X_ref + (r.max() - self.r_ref) * self.unit_vec)  #: coordinates of the end of the beam
 
         # Beam coordinates
         self.x = self.r_to_x(self.r)
@@ -124,7 +119,7 @@ class Probe:
             probe color, by default None
         """
         ax.scatter(self.O[0], self.O[1], color=color)
-        (a,) = ax.plot(
+        (a, ) = ax.plot(
             [self.O[0], self.E[0]],
             [self.O[1], self.E[1]],
             color=color,
@@ -184,7 +179,7 @@ def sketch_probes(
             ax.plot([X[0], X[0]], [z_min, z_max], color=combination_color)
 
 
-def probe_crossing_point(probe1: Probe, probe2: Probe) -> npt.NDArray:
+def probe_crossing_point(probe1: Probe, probe2: Probe) -> np.ndarray:
     """
     calculate the crossing point of two probe beams.
 
@@ -231,10 +226,8 @@ def compute_vertical_axis(probe1: Probe, probe2: Probe):
 
 
 def reconstruct_velocity(
-    u1: npt.ArrayLike, u2: npt.ArrayLike, probe1: Probe, probe2: Probe
-) -> tuple[
-    npt.NDArray, npt.NDArray, npt.NDArray, npt.NDArray, npt.NDArray, npt.NDArray
-]:
+        u1: npt.ArrayLike, u2: npt.ArrayLike, probe1: Probe,
+        probe2: Probe) -> tuple[np.ndarray, np.ndarray, np.ndarray, np.ndarray, np.ndarray, np.ndarray]:
     """
     This function takes the velocities measured by two probes, and reconstruct the velocity field, assuming that it only depends on the vertical coordinate.
 
@@ -275,9 +268,7 @@ def reconstruct_velocity(
     # velocity reconstruction
     M = np.array([probe1.unit_vec, probe2.unit_vec])
     # U = np.linalg.inv(M) @ np.array([u1_interp, u2_interp])
-    U = np.einsum(
-        "ij, jk... -> ik...", np.linalg.inv(M), np.array([u1_interp, u2_interp])
-    )
+    U = np.einsum("ij, jk... -> ik...", np.linalg.inv(M), np.array([u1_interp, u2_interp]))
     #
     # # other quantities
     # crossing point
@@ -288,11 +279,8 @@ def reconstruct_velocity(
     return U, z_interp, X, dx_1, dx_2
 
 
-def average_amplitude(
-    a1: npt.ArrayLike, a2: npt.ArrayLike, probe1: Probe, probe2: Probe
-) -> tuple[
-    npt.NDArray, npt.NDArray, npt.NDArray, npt.NDArray, npt.NDArray, npt.NDArray
-]:
+def average_amplitude(a1: npt.ArrayLike, a2: npt.ArrayLike, probe1: Probe,
+                      probe2: Probe) -> tuple[np.ndarray, np.ndarray, np.ndarray, np.ndarray, np.ndarray, np.ndarray]:
     """
     This function takes the amplitude measured by two probes and average them, assuming that it only depends on the vertical coordinate.
 
@@ -336,13 +324,11 @@ def average_amplitude(
     # horizontal distances to the vertical axis passing by the crossing point
     dx_1 = np.tan(np.radians(probe1.alpha)) * (z_interp - X[1])
     dx_2 = np.tan(np.radians(probe2.alpha)) * (z_interp - X[1])
-    return (a1_interp + a2_interp) / 2, z_interp, X, dx_1, dx_2
+    return (a1_interp+a2_interp) / 2, z_interp, X, dx_1, dx_2
 
 
 if __name__ == "__main__":
     #
-    import matplotlib.pyplot as plt
-
     # # Test Probe object definition
     r = np.linspace(0, 5, 100)
     alpha1, alpha2 = -120, -70  # deg
@@ -362,7 +348,7 @@ if __name__ == "__main__":
 
     # #### Test velocity reconstruction
     def U(z):
-        u = 5 * (5 - z) ** 2
+        u = 5 * (5 - z)**2
         v = u / 10
         U = np.array([u, v])
         return U
