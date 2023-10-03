@@ -10,7 +10,7 @@ import numpy as np
 from pyudv.geometry import Probe, sketch_probes
 
 # ## define probes
-r = np.linspace(0, 5, 100)  # beam radial coordiantes, same for all probes
+r = np.linspace(1, 5, 100)  # beam radial coordiantes, same for all probes
 alpha1, alpha2, alpha3, alpha4 = -120, -70, 70, -80  # probe inclinations in degree
 # probe origin points
 O1, O2, O3, O4 = (

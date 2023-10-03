@@ -118,11 +118,18 @@ class Probe:
         color : str, optional
             probe color, by default None
         """
-        ax.scatter(self.O[0], self.O[1], color=color)
+        a = ax.scatter(self.O[0], self.O[1], color=color)
+        # plot unused beam part
+        (a, ) = ax.plot([self.O[0], self.x[0]], [self.O[1], self.z[0]],
+                        color=a.get_facecolor(),
+                        ls="--",
+                        lw=1,
+                        alpha=0.3)
+        # plot used beam part
         (a, ) = ax.plot(
-            [self.O[0], self.E[0]],
-            [self.O[1], self.E[1]],
-            color=color,
+            [self.x[0], self.E[0]],
+            [self.z[0], self.E[1]],
+            color=a.get_color(),
             ls="--",
             lw=1,
         )
