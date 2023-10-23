@@ -1,10 +1,10 @@
 ## Direct amplitude inversion
 
-Mean square voltage: $$\langle V^{2} \rangle = \left(\frac{K_{\rm s} K_{\rm t}}{r\psi_{(r)}}\right) C e^{-4[r\alpha_{\rm w} + \alpha_{\rm s}]}\text{, with }\alpha_{\rm s} = \int_{0}^{r}\xi C$$
+Mean square voltage: $$\langle V^{2} \rangle = \left(\frac{K_{\rm s} K_{\rm t}}{r\psi_{(r)}}\right)^{2} C e^{-4[r\alpha_{\rm w} + \alpha_{\rm s}]}\text{, with }\alpha_{\rm s} = \int_{0}^{r}\xi C$$
 
 ### 1. Explicit solution
 
-Lets define : $$f(r) = \langle V^{2} \rangle \left(\frac{r\psi_{(r)}}{K_{\rm s} K_{\rm t}}\right) e^{4r\alpha_{\rm w}} = Ce^{-4\alpha_{\rm s}}.$$
+Lets define : $$f(r) = \langle V^{2} \rangle \left(\frac{r\psi_{(r)}}{K_{\rm s} K_{\rm t}}\right) ^{2} e^{4r\alpha_{\rm w}} = Ce^{-4\alpha_{\rm s}}.$$
 
 Then after logarithmic differentiation: $$\frac{f'}{f}  = \frac{C'}{C} - 4\xi C,$$
 
