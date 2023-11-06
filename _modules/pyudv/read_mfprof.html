@@ -1,0 +1,1042 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>pyudv.read_mfprof &#8212; pyudv  documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=365ca57ee442770a23c6" rel="stylesheet" />
+<link href="../../_static/styles/bootstrap.css?digest=365ca57ee442770a23c6" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=365ca57ee442770a23c6" rel="stylesheet" />
+
+  
+  <link href="../../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=365ca57ee442770a23c6" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery.css?v=61a4c737" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery-binder.css?v=f4aeca0c" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery-dataframe.css?v=2082cf3c" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery-rendered-html.css?v=1277b6f3" />
+    <link rel="stylesheet" type="text/css" href="../../_static/pydata-custom.css?v=2e59d9c9" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=365ca57ee442770a23c6" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=365ca57ee442770a23c6" />
+  <script src="../../_static/vendor/fontawesome/6.1.2/js/all.min.js?digest=365ca57ee442770a23c6"></script>
+
+    <script src="../../_static/documentation_options.js?v=7f41d439"></script>
+    <script src="../../_static/doctools.js?v=888ff710"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = '_modules/pyudv/read_mfprof';</script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+<div class="bd-header__inner bd-page-width">
+  <label class="sidebar-toggle primary-toggle" for="__primary">
+    <span class="fa-solid fa-bars"></span>
+  </label>
+  
+  
+  <div class="col-lg-3 navbar-header-items__start">
+    
+      <div class="navbar-item">
+  
+
+<a class="navbar-brand logo" href="../../index.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">pyudv</p>
+  
+</a></div>
+    
+  </div>
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
+      
+        <div class="navbar-item"><nav class="navbar-nav">
+  <p class="sidebar-header-items__title"
+     role="heading"
+     aria-level="1"
+     aria-label="Site Navigation">
+    Site Navigation
+  </p>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../../index.html">
+                        Home page
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../../_examples/index.html">
+                        Examples
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../../_autosummary/pyudv.html">
+                        API reference
+                      </a>
+                    </li>
+                
+  </ul>
+</nav></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+ <script>
+ document.write(`
+   <button class="btn navbar-btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script>
+        </div>
+      
+      
+        <div class="navbar-item">
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script></div>
+      
+        <div class="navbar-item"><ul class="navbar-icon-links navbar-nav"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/cgadal-pythonpackages/pyudv" title="GitHub" class="nav-link" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><span><i class="fa-brands fa-square-github fa-lg" aria-hidden="true"></i></span>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+</ul></div>
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+ <script>
+ document.write(`
+   <button class="btn navbar-btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script>
+    </div>
+  
+
+  
+</div>
+
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar hide-on-wide">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          <div class="navbar-item"><nav class="navbar-nav">
+  <p class="sidebar-header-items__title"
+     role="heading"
+     aria-level="1"
+     aria-label="Site Navigation">
+    Site Navigation
+  </p>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../../index.html">
+                        Home page
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../../_examples/index.html">
+                        Examples
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../../_autosummary/pyudv.html">
+                        API reference
+                      </a>
+                    </li>
+                
+  </ul>
+</nav></div>
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item">
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script></div>
+        
+          <div class="navbar-item"><ul class="navbar-icon-links navbar-nav"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/cgadal-pythonpackages/pyudv" title="GitHub" class="nav-link" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><span><i class="fa-brands fa-square-github fa-lg" aria-hidden="true"></i></span>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+</ul></div>
+        
+      </div>
+    
+  </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+
+
+
+<nav aria-label="Breadcrumb">
+  <ul class="bd-breadcrumbs">
+    
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="../../index.html" class="nav-link" aria-label="Home">
+        <i class="fa-solid fa-home"></i>
+      </a>
+    </li>
+    
+    <li class="breadcrumb-item"><a href="../index.html" class="nav-link">Module code</a></li>
+    
+    <li class="breadcrumb-item active" aria-current="page">pyudv.read_mfprof</li>
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <h1>Source code for pyudv.read_mfprof</h1><div class="highlight"><pre>
+<span></span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">This module allows you to read `.mfprof` files from Met-Flow UDVs, and extract the contained data.</span>
+
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="kn">import</span> <span class="nn">netCDF4</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<span class="n">Types</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">&quot;Frequency&quot;</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">int32</span><span class="p">,</span>
+    <span class="s2">&quot;StartChannel&quot;</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">,</span>
+    <span class="s2">&quot;ChannelDistance&quot;</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">,</span>
+    <span class="s2">&quot;ChannelWidth&quot;</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">,</span>
+    <span class="s2">&quot;MaximumDepth&quot;</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">,</span>
+    <span class="s2">&quot;SoundSpeed&quot;</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">int32</span><span class="p">,</span>
+    <span class="s2">&quot;Angle&quot;</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
+    <span class="s2">&quot;GainStart&quot;</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">int32</span><span class="p">,</span>
+    <span class="s2">&quot;GainEnd&quot;</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">int32</span><span class="p">,</span>
+    <span class="s2">&quot;Voltage&quot;</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">int32</span><span class="p">,</span>
+    <span class="s2">&quot;Iterations&quot;</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">int32</span><span class="p">,</span>
+    <span class="s2">&quot;NoiseLevel&quot;</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">int32</span><span class="p">,</span>
+    <span class="s2">&quot;CyclesPerPulse&quot;</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">int32</span><span class="p">,</span>
+    <span class="s2">&quot;TriggerMode&quot;</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">int32</span><span class="p">,</span>
+    <span class="s2">&quot;TriggerModeName&quot;</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+    <span class="s2">&quot;ProfileLength&quot;</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">int32</span><span class="p">,</span>
+    <span class="s2">&quot;ProfilesPerBlock&quot;</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">int32</span><span class="p">,</span>
+    <span class="s2">&quot;Blocks&quot;</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">int32</span><span class="p">,</span>
+    <span class="s2">&quot;AmplitudeStored&quot;</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
+    <span class="s2">&quot;DoNotStoreDoppler&quot;</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
+    <span class="s2">&quot;RawDataMin&quot;</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
+    <span class="s2">&quot;RawDataMax&quot;</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
+    <span class="s2">&quot;RawDataRange&quot;</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">int32</span><span class="p">,</span>
+    <span class="s2">&quot;AmplDataMin&quot;</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
+    <span class="s2">&quot;AmplDataMax&quot;</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
+    <span class="s2">&quot;VelocityInterpretingMode&quot;</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
+    <span class="s2">&quot;UserSampleTime&quot;</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
+    <span class="s2">&quot;SampleTime&quot;</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">int32</span><span class="p">,</span>
+    <span class="s2">&quot;UseMultiplexer&quot;</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
+    <span class="s2">&quot;FlowMapping&quot;</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
+    <span class="s2">&quot;FirstValidChannel&quot;</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">int32</span><span class="p">,</span>
+    <span class="s2">&quot;LastValidChannel&quot;</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">int32</span><span class="p">,</span>
+    <span class="s2">&quot;FlowRateType&quot;</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
+    <span class="s2">&quot;PeriodEnhOffset&quot;</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">int32</span><span class="p">,</span>
+    <span class="s2">&quot;PeriodEnhPeriod&quot;</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">int32</span><span class="p">,</span>
+    <span class="s2">&quot;PeriodEnhNCycles&quot;</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">int32</span><span class="p">,</span>
+    <span class="s2">&quot;Comment&quot;</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+    <span class="s2">&quot;MeasurementProtocol&quot;</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+    <span class="s2">&quot;NumberOfCycles&quot;</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">int32</span><span class="p">,</span>
+    <span class="s2">&quot;CycleDelay&quot;</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">int32</span><span class="p">,</span>
+    <span class="s2">&quot;Version&quot;</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">int32</span><span class="p">,</span>
+    <span class="s2">&quot;Table&quot;</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+    <span class="s2">&quot;CalcOffsetPulsesCount&quot;</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">int32</span><span class="p">,</span>
+    <span class="s2">&quot;MultiplexerUsingType&quot;</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+<span class="p">}</span>
+
+<span class="n">Base_units</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">&quot;Frequency&quot;</span><span class="p">:</span> <span class="s2">&quot;Hz&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;StartChannel&quot;</span><span class="p">:</span> <span class="s2">&quot;mm&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;ChannelDistance&quot;</span><span class="p">:</span> <span class="s2">&quot;mm&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;ChannelWidth&quot;</span><span class="p">:</span> <span class="s2">&quot;mm&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;MaximumDepth&quot;</span><span class="p">:</span> <span class="s2">&quot;mm&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;SoundSpeed&quot;</span><span class="p">:</span> <span class="s2">&quot;m/s&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;Angle&quot;</span><span class="p">:</span> <span class="s2">&quot;int&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;GainStart&quot;</span><span class="p">:</span> <span class="s2">&quot;int&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;GainEnd&quot;</span><span class="p">:</span> <span class="s2">&quot;int&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;Voltage&quot;</span><span class="p">:</span> <span class="s2">&quot;V&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;Iterations&quot;</span><span class="p">:</span> <span class="s2">&quot;int&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;NoiseLevel&quot;</span><span class="p">:</span> <span class="s2">&quot;int&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;CyclesPerPulse&quot;</span><span class="p">:</span> <span class="s2">&quot;int&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;TriggerMode&quot;</span><span class="p">:</span> <span class="s2">&quot;index&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;TriggerModeName&quot;</span><span class="p">:</span> <span class="s2">&quot;text&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;ProfileLength&quot;</span><span class="p">:</span> <span class="s2">&quot;nChannels&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;ProfilesPerBlock&quot;</span><span class="p">:</span> <span class="s2">&quot;nSamples&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;Blocks&quot;</span><span class="p">:</span> <span class="s2">&quot;int&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;AmplitudeStored&quot;</span><span class="p">:</span> <span class="s2">&quot;bool&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;DoNotStoreDoppler&quot;</span><span class="p">:</span> <span class="s2">&quot;-&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;RawDataMin&quot;</span><span class="p">:</span> <span class="s2">&quot;int&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;RawDataMax&quot;</span><span class="p">:</span> <span class="s2">&quot;int&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;RawDataRange&quot;</span><span class="p">:</span> <span class="s2">&quot;int&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;AmplDataMin&quot;</span><span class="p">:</span> <span class="s2">&quot;int&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;AmplDataMax&quot;</span><span class="p">:</span> <span class="s2">&quot;int&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;VelocityInterpretingMode&quot;</span><span class="p">:</span> <span class="s2">&quot;int&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;UserSampleTime&quot;</span><span class="p">:</span> <span class="s2">&quot;bool&quot;</span><span class="p">,</span>
+    <span class="c1"># &#39;SampleTime&#39;: &#39;int&#39;,</span>
+    <span class="s2">&quot;SampleTime&quot;</span><span class="p">:</span> <span class="s2">&quot;ms&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;UseMultiplexer&quot;</span><span class="p">:</span> <span class="s2">&quot;bool&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;FlowMapping&quot;</span><span class="p">:</span> <span class="s2">&quot;bool&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;FirstValidChannel&quot;</span><span class="p">:</span> <span class="s2">&quot;int&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;LastValidChannel&quot;</span><span class="p">:</span> <span class="s2">&quot;int&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;FlowRateType&quot;</span><span class="p">:</span> <span class="s2">&quot;bool&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;PeriodEnhOffset&quot;</span><span class="p">:</span> <span class="s2">&quot;int&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;PeriodEnhPeriod&quot;</span><span class="p">:</span> <span class="s2">&quot;int&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;PeriodEnhNCycles&quot;</span><span class="p">:</span> <span class="s2">&quot;int&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;Comment&quot;</span><span class="p">:</span> <span class="s2">&quot;text&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;MeasurementProtocol&quot;</span><span class="p">:</span> <span class="s2">&quot;text&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;NumberOfCycles&quot;</span><span class="p">:</span> <span class="s2">&quot;int&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;CycleDelay&quot;</span><span class="p">:</span> <span class="s2">&quot;int&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;Version&quot;</span><span class="p">:</span> <span class="s2">&quot;int&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;Table&quot;</span><span class="p">:</span> <span class="s2">&quot;int&quot;</span><span class="p">,</span>
+    <span class="c1"># switched from np.int32 to str due to problem loading files with multiplexing</span>
+    <span class="s2">&quot;CalcOffsetPulsesCount&quot;</span><span class="p">:</span> <span class="s2">&quot;int&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;MultiplexerUsingType&quot;</span><span class="p">:</span> <span class="s2">&quot;int&quot;</span><span class="p">,</span>
+<span class="p">}</span>
+
+<span class="n">Absolute_gains</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="mf">0.5</span><span class="p">:</span> <span class="p">{</span>
+        <span class="mi">3</span><span class="p">:</span> <span class="mf">2.17</span><span class="p">,</span>
+        <span class="mi">4</span><span class="p">:</span> <span class="mf">4.41</span><span class="p">,</span>
+        <span class="mi">5</span><span class="p">:</span> <span class="mf">8.82</span><span class="p">,</span>
+        <span class="mi">6</span><span class="p">:</span> <span class="mf">16.67</span><span class="p">,</span>
+        <span class="mi">7</span><span class="p">:</span> <span class="mf">33.33</span><span class="p">,</span>
+        <span class="mi">8</span><span class="p">:</span> <span class="mf">60.00</span><span class="p">,</span>
+        <span class="mi">9</span><span class="p">:</span> <span class="mf">150.00</span>
+    <span class="p">},</span>
+    <span class="mi">1</span><span class="p">:</span> <span class="p">{</span>
+        <span class="mi">3</span><span class="p">:</span> <span class="mf">2.17</span><span class="p">,</span>
+        <span class="mi">4</span><span class="p">:</span> <span class="mf">4.41</span><span class="p">,</span>
+        <span class="mi">5</span><span class="p">:</span> <span class="mf">8.82</span><span class="p">,</span>
+        <span class="mi">6</span><span class="p">:</span> <span class="mf">16.67</span><span class="p">,</span>
+        <span class="mi">7</span><span class="p">:</span> <span class="mf">33.33</span><span class="p">,</span>
+        <span class="mi">8</span><span class="p">:</span> <span class="mf">60.00</span><span class="p">,</span>
+        <span class="mi">9</span><span class="p">:</span> <span class="mf">150.00</span>
+    <span class="p">},</span>
+    <span class="mi">2</span><span class="p">:</span> <span class="p">{</span>
+        <span class="mi">3</span><span class="p">:</span> <span class="mf">0.91</span><span class="p">,</span>
+        <span class="mi">4</span><span class="p">:</span> <span class="mf">1.76</span><span class="p">,</span>
+        <span class="mi">5</span><span class="p">:</span> <span class="mf">3.41</span><span class="p">,</span>
+        <span class="mi">6</span><span class="p">:</span> <span class="mf">6.67</span><span class="p">,</span>
+        <span class="mi">7</span><span class="p">:</span> <span class="mf">15.00</span><span class="p">,</span>
+        <span class="mi">8</span><span class="p">:</span> <span class="mf">25.00</span><span class="p">,</span>
+        <span class="mi">9</span><span class="p">:</span> <span class="mf">60.00</span>
+    <span class="p">},</span>
+    <span class="mi">4</span><span class="p">:</span> <span class="p">{</span>
+        <span class="mi">3</span><span class="p">:</span> <span class="mf">0.91</span><span class="p">,</span>
+        <span class="mi">4</span><span class="p">:</span> <span class="mf">1.76</span><span class="p">,</span>
+        <span class="mi">5</span><span class="p">:</span> <span class="mf">3.41</span><span class="p">,</span>
+        <span class="mi">6</span><span class="p">:</span> <span class="mf">6.67</span><span class="p">,</span>
+        <span class="mi">7</span><span class="p">:</span> <span class="mf">15.00</span><span class="p">,</span>
+        <span class="mi">8</span><span class="p">:</span> <span class="mf">25.00</span><span class="p">,</span>
+        <span class="mi">9</span><span class="p">:</span> <span class="mf">60.00</span>
+    <span class="p">},</span>
+    <span class="mi">8</span><span class="p">:</span> <span class="p">{</span>
+        <span class="mi">3</span><span class="p">:</span> <span class="mf">0.65</span><span class="p">,</span>
+        <span class="mi">4</span><span class="p">:</span> <span class="mf">1.36</span><span class="p">,</span>
+        <span class="mi">5</span><span class="p">:</span> <span class="mf">2.80</span><span class="p">,</span>
+        <span class="mi">6</span><span class="p">:</span> <span class="mf">5.26</span><span class="p">,</span>
+        <span class="mi">7</span><span class="p">:</span> <span class="mf">11.11</span><span class="p">,</span>
+        <span class="mi">8</span><span class="p">:</span> <span class="mf">23.08</span><span class="p">,</span>
+        <span class="mi">9</span><span class="p">:</span> <span class="mf">42.86</span>
+    <span class="p">},</span>
+<span class="p">}</span>
+
+
+<div class="viewcode-block" id="read_mfprof">
+<a class="viewcode-back" href="../../_autosummary/pyudv.read_mfprof.read_mfprof.html#pyudv.read_mfprof.read_mfprof">[docs]</a>
+<span class="k">def</span> <span class="nf">read_mfprof</span><span class="p">(</span><span class="n">fileName</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+                <span class="n">SI_units</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
+                <span class="n">convert_time</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Read .mfprof binary files of the Met-Flow UDV. This is mostly a direct python translation of the matlab script given by Met-Flow.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    fileName : str</span>
+<span class="sd">        Path to the .mfprof file.</span>
+<span class="sd">    SI_units : bool</span>
+<span class="sd">        If `True`, convert units to the international system (the default is True).</span>
+<span class="sd">    convert_time : bool</span>
+<span class="sd">        If True, convert the time vector into seconds (the default is True).</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    Data : dict</span>
+<span class="sd">        Dictionnary with the data stored in the mprof files. Available keys are: &#39;transducer&#39;, &#39;profileTime&#39;, &#39;DopplerData&#39;, &#39;AmplitudeData&#39;, &#39;DistanceAlongBeam&#39;</span>
+<span class="sd">    Parameters : dict</span>
+<span class="sd">        Dictionnary with the parameters used in the UVP software when sampling the data. See UVP documentation for detail. Keys are: &#39;Frequency&#39;, &#39;StartChannel&#39;, &#39;ChannelDistance&#39;, &#39;ChannelWidth&#39;, &#39;MaximumDepth&#39;, &#39;SoundSpeed&#39;, &#39;Angle&#39;, &#39;GainStart&#39;, &#39;GainEnd&#39;, &#39;Voltage&#39;, &#39;Iterations&#39;, &#39;NoiseLevel&#39;, &#39;CyclesPerPulse&#39;, &#39;TriggerMode&#39;, &#39;TriggerModeName&#39;, &#39;ProfileLength&#39;, &#39;ProfilesPerBlock&#39;, &#39;Blocks&#39;, &#39;AmplitudeStored&#39;, &#39;DoNotStoreDoppler&#39;, &#39;RawDataMin&#39;, &#39;RawDataMax&#39;, &#39;RawDataRange&#39;, &#39;AmplDataMin&#39;, &#39;AmplDataMax&#39;, &#39;VelocityInterpretingMode&#39;, &#39;UserSampleTime&#39;, &#39;SampleTime&#39;, &#39;UseMultiplexer&#39;, &#39;FlowMapping&#39;, &#39;FirstValidChannel&#39;, &#39;LastValidChannel&#39;, &#39;FlowRateType&#39;, &#39;PeriodEnhOffset&#39;, &#39;PeriodEnhPeriod&#39;, &#39;PeriodEnhNCycles&#39;, &#39;Comment&#39;, &#39;MeasurementProtocol&#39;, &#39;NumberOfCycles&#39;, &#39;CycleDelay&#39;, &#39;Version&#39;, &#39;Table&#39;</span>
+<span class="sd">    Infos: dict</span>
+<span class="sd">        Dictionnary with some informations stored during sampling of the data. Keys are &#39;Signum&#39;, &#39;measParamsOffset&#39;, &#39;nProfiles&#39;, &#39;reserved1&#39;, &#39;flags&#39;, &#39;recordSize&#39;, &#39;nChannels&#39;, &#39;reserved2&#39;, &#39;startTime&#39;.</span>
+<span class="sd">    Units: dict</span>
+<span class="sd">        Dictionnary with the units of the variables stored in the other dictionnaries. Keys are the name of the variables.</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">Infos</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="n">Parameters</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="n">Data</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">fileName</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s2">&quot;rb&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">file</span><span class="p">:</span>  <span class="c1"># b is important -&gt; binary</span>
+        <span class="c1">############################################################################</span>
+        <span class="c1"># ######################## File HEADER #####################################</span>
+        <span class="c1">############################################################################</span>
+        <span class="c1"># Met-Flow 64-symbol file type signature</span>
+        <span class="n">Infos</span><span class="p">[</span><span class="s2">&quot;Signum&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">fromfile</span><span class="p">(</span><span class="n">file</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">uint8</span><span class="p">,</span> <span class="mi">64</span><span class="p">)</span>  <span class="c1"># char 64</span>
+        <span class="c1"># 64-bit number giving position of beginning of Measurement Parameters</span>
+        <span class="n">Infos</span><span class="p">[</span><span class="s2">&quot;measParamsOffset&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">fromfile</span><span class="p">(</span><span class="n">file</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">int64</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+        <span class="c1"># Number of profiles saved in the file</span>
+        <span class="n">Infos</span><span class="p">[</span><span class="s2">&quot;nProfiles&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">fromfile</span><span class="p">(</span><span class="n">file</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">int32</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+        <span class="c1"># Always 0 parameter</span>
+        <span class="n">Infos</span><span class="p">[</span><span class="s2">&quot;reserved1&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">fromfile</span><span class="p">(</span><span class="n">file</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">int32</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+        <span class="c1"># Flag. If this is set (=1) then Profiles also contain Amplitude Infos</span>
+        <span class="n">Infos</span><span class="p">[</span><span class="s2">&quot;flags&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">fromfile</span><span class="p">(</span><span class="n">file</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">int32</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+        <span class="c1"># Size of Infos in a single Profile</span>
+        <span class="n">Infos</span><span class="p">[</span><span class="s2">&quot;recordSize&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">fromfile</span><span class="p">(</span><span class="n">file</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">int32</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+        <span class="c1"># Number of Infos channels in a single Profile</span>
+        <span class="n">Infos</span><span class="p">[</span><span class="s2">&quot;nChannels&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">fromfile</span><span class="p">(</span><span class="n">file</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">int32</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+        <span class="c1"># Always 0 parameter</span>
+        <span class="n">Infos</span><span class="p">[</span><span class="s2">&quot;reserved2&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">fromfile</span><span class="p">(</span><span class="n">file</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">int32</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+        <span class="c1"># Time of measurement of the start(first profile) in the format FILETIME (Win32) structure.</span>
+        <span class="n">Infos</span><span class="p">[</span><span class="s2">&quot;startTime&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">fromfile</span><span class="p">(</span><span class="n">file</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">int64</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+
+        <span class="c1">############################################################################</span>
+        <span class="c1"># ######### PROFILES - Read contents of PROFILES BLOCK #####################</span>
+        <span class="c1">############################################################################</span>
+
+        <span class="c1"># Profile information (in 0 to 255, 8-bit)values follow immediately after</span>
+        <span class="c1"># Profile header. Profiles consists of nProfiles Doppler Infos and if flags = 1</span>
+        <span class="c1"># then profile also contain Amplitude Infos. Each block consists of:</span>
+        <span class="c1"># Profile Header, Doppler Infos and Amplitude Infos. This information must be</span>
+        <span class="c1"># read nProfiles times.</span>
+
+        <span class="c1"># First, we allocate memory space for faster file reading</span>
+        <span class="n">Data</span><span class="p">[</span><span class="s2">&quot;transducer&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">Infos</span><span class="p">[</span><span class="s2">&quot;nProfiles&quot;</span><span class="p">][</span><span class="mi">0</span><span class="p">],</span> <span class="p">))</span>
+        <span class="n">Data</span><span class="p">[</span><span class="s2">&quot;profileTime&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">Infos</span><span class="p">[</span><span class="s2">&quot;nProfiles&quot;</span><span class="p">][</span><span class="mi">0</span><span class="p">],</span> <span class="p">))</span>
+        <span class="n">Data</span><span class="p">[</span><span class="s2">&quot;DopplerData&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span>
+            <span class="p">(</span><span class="n">Infos</span><span class="p">[</span><span class="s2">&quot;nChannels&quot;</span><span class="p">][</span><span class="mi">0</span><span class="p">],</span> <span class="n">Infos</span><span class="p">[</span><span class="s2">&quot;nProfiles&quot;</span><span class="p">][</span><span class="mi">0</span><span class="p">]))</span>
+        <span class="n">Data</span><span class="p">[</span><span class="s2">&quot;AmplitudeData&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span>
+            <span class="p">(</span><span class="n">Infos</span><span class="p">[</span><span class="s2">&quot;nChannels&quot;</span><span class="p">][</span><span class="mi">0</span><span class="p">],</span> <span class="n">Infos</span><span class="p">[</span><span class="s2">&quot;nProfiles&quot;</span><span class="p">][</span><span class="mi">0</span><span class="p">]))</span>
+
+        <span class="c1"># READ CONTENTS FROM BLOCK nProfiles TIMES</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">Infos</span><span class="p">[</span><span class="s2">&quot;nProfiles&quot;</span><span class="p">][</span><span class="mi">0</span><span class="p">]):</span>
+            <span class="c1"># PROFILE HEADER BLOCK</span>
+            <span class="c1"># Always 0 not used</span>
+            <span class="n">_</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">fromfile</span><span class="p">(</span><span class="n">file</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">int32</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>  <span class="c1"># status</span>
+            <span class="c1"># Data[&#39;transducer&#39;] number -reads which Data[&#39;transducer&#39;] Infos comes from</span>
+            <span class="n">Data</span><span class="p">[</span><span class="s2">&quot;transducer&quot;</span><span class="p">][</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">fromfile</span><span class="p">(</span><span class="n">file</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">int32</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+            <span class="c1"># Time of measurement of the profile in 100 ns increments</span>
+            <span class="n">Data</span><span class="p">[</span><span class="s2">&quot;profileTime&quot;</span><span class="p">][</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">fromfile</span><span class="p">(</span><span class="n">file</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">int64</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+            <span class="c1"># DOPPLER Infos BLOCK</span>
+            <span class="c1"># Doppler Infos block contains nChannels Int16 Doppler values from UVP</span>
+            <span class="n">Data</span><span class="p">[</span><span class="s2">&quot;DopplerData&quot;</span><span class="p">][:,</span> <span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">fromfile</span><span class="p">(</span><span class="n">file</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">int16</span><span class="p">,</span>
+                                                    <span class="n">Infos</span><span class="p">[</span><span class="s2">&quot;nChannels&quot;</span><span class="p">][</span><span class="mi">0</span><span class="p">])</span>
+            <span class="c1"># AMPLITUDE Infos BLOCK</span>
+            <span class="c1"># Amplitude Infos block contains nChannels Int16 Amplitude values from UVP</span>
+            <span class="k">if</span> <span class="n">Infos</span><span class="p">[</span><span class="s2">&quot;flags&quot;</span><span class="p">]:</span>  <span class="c1"># Read Infos if it exists</span>
+                <span class="n">Data</span><span class="p">[</span><span class="s2">&quot;AmplitudeData&quot;</span><span class="p">][:,</span>
+                                      <span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">fromfile</span><span class="p">(</span><span class="n">file</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">int16</span><span class="p">,</span>
+                                                       <span class="n">Infos</span><span class="p">[</span><span class="s2">&quot;nChannels&quot;</span><span class="p">][</span><span class="mi">0</span><span class="p">])</span>
+
+        <span class="c1">############################################################################</span>
+        <span class="c1"># ##### UVP PARAMETER  - Read the UVP Parameters into a Matlab struct ######</span>
+        <span class="c1">############################################################################</span>
+
+        <span class="c1"># UVP Measurement Parameters are stored at measParamsOffset position. Measurement</span>
+        <span class="c1"># Parameters are saved in text form. Values of parameters are saved in a form:</span>
+        <span class="c1"># parameter name=parameter value. Each parameter is given in one line. In case of</span>
+        <span class="c1"># text values including more lines, at the end of line (with the exception of the last</span>
+        <span class="c1"># line) a symbol &#39;\&#39; is added. E.g. comment including two lines:</span>
+        <span class="c1"># &quot;An example of forwards-backwards oscillating &#39;piston&#39; flow</span>
+        <span class="c1"># Piston action starts only after Profile 110&quot; will be saved as:</span>
+        <span class="c1"># Comment=An example of forwards-backwards oscillating &#39;piston&#39; flow.\</span>
+        <span class="c1"># Piston action starts only after Profile 110.</span>
+        <span class="c1"># Measurement Parameters consist of two blocks:</span>
+        <span class="c1"># 1. UVP Parameters, and 2. and Multiplexer Parameters if present</span>
+
+        <span class="c1"># READ CONTENTS FROM UVP PARAMETER BLOCK</span>
+        <span class="c1"># Find position of Measurement Parameters start location</span>
+        <span class="n">file</span><span class="o">.</span><span class="n">seek</span><span class="p">(</span><span class="n">Infos</span><span class="p">[</span><span class="s2">&quot;measParamsOffset&quot;</span><span class="p">][</span><span class="mi">0</span><span class="p">],</span> <span class="mi">0</span><span class="p">)</span>
+        <span class="n">_</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">fromfile</span><span class="p">(</span><span class="n">file</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">uint8</span><span class="p">,</span> <span class="mi">15</span><span class="p">)</span>  <span class="c1"># measParamsposition</span>
+        <span class="n">Parameters</span> <span class="o">=</span> <span class="p">{}</span>
+
+        <span class="c1"># READ CONTENTS FROM UVP PARAMETER BLOCK LINE BY LINE</span>
+        <span class="n">par</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+        <span class="k">while</span> <span class="n">par</span> <span class="o">!=</span> <span class="s2">&quot;Table&quot;</span><span class="p">:</span>
+            <span class="n">line</span> <span class="o">=</span> <span class="n">file</span><span class="o">.</span><span class="n">readline</span><span class="p">()</span><span class="o">.</span><span class="n">rstrip</span><span class="p">()</span>  <span class="c1"># Read new line</span>
+            <span class="k">if</span> <span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">line</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="sa">b</span><span class="s2">&quot;=&quot;</span> <span class="ow">in</span> <span class="n">line</span><span class="p">):</span>  <span class="c1"># skip empty lines</span>
+                <span class="c1"># print(line)</span>
+                <span class="n">tp</span> <span class="o">=</span> <span class="n">line</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="s2">&quot;utf-8&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;=&quot;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+                <span class="n">par</span> <span class="o">=</span> <span class="n">line</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="s2">&quot;utf-8&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;=&quot;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+                <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">tp</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
+                    <span class="n">Parameters</span><span class="p">[</span><span class="n">par</span><span class="p">]</span> <span class="o">=</span> <span class="n">line</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="s2">&quot;utf-8&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;=&quot;</span><span class="p">)[</span><span class="mi">1</span><span class="p">]</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="n">Parameters</span><span class="p">[</span><span class="n">par</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
+
+    <span class="c1"># converting time in seconds - dt = 100 ns</span>
+    <span class="k">if</span> <span class="n">convert_time</span><span class="p">:</span>
+        <span class="n">Data</span><span class="p">[</span><span class="s2">&quot;profileTime&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">Data</span><span class="p">[</span><span class="s2">&quot;profileTime&quot;</span><span class="p">]</span> <span class="o">*</span> <span class="mi">100</span> <span class="o">*</span> <span class="mf">1e-9</span>
+    <span class="c1"># Formatting parameters</span>
+    <span class="n">Units</span> <span class="o">=</span> <span class="n">Base_units</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+    <span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="n">Parameters</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
+        <span class="c1"># Assigning good type to parameters</span>
+        <span class="n">Parameters</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="n">Types</span><span class="p">[</span><span class="n">key</span><span class="p">](</span><span class="n">Parameters</span><span class="p">[</span><span class="n">key</span><span class="p">])</span>
+        <span class="k">if</span> <span class="n">SI_units</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">Base_units</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;mm&quot;</span><span class="p">):</span>  <span class="c1"># Converting mm to m</span>
+            <span class="n">Parameters</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="mf">1e-3</span> <span class="o">*</span> <span class="n">Parameters</span><span class="p">[</span><span class="n">key</span><span class="p">]</span>
+            <span class="n">Units</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;m&quot;</span>
+        <span class="k">if</span> <span class="n">SI_units</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">Base_units</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;ms&quot;</span><span class="p">):</span>  <span class="c1"># Converting ms to s</span>
+            <span class="n">Parameters</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="mf">1e-3</span> <span class="o">*</span> <span class="n">Parameters</span><span class="p">[</span><span class="n">key</span><span class="p">]</span>
+            <span class="n">Units</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;s&quot;</span>
+
+    <span class="n">Data</span><span class="p">[</span><span class="s2">&quot;DistanceAlongBeam&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">Data</span><span class="p">[</span><span class="s2">&quot;AmplitudeData&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span> <span class="o">*</span>
+                                 <span class="n">Parameters</span><span class="p">[</span><span class="s2">&quot;ChannelDistance&quot;</span><span class="p">]</span> <span class="o">+</span>
+                                 <span class="n">Parameters</span><span class="p">[</span><span class="s2">&quot;StartChannel&quot;</span><span class="p">])</span>
+    <span class="k">return</span> <span class="n">Data</span><span class="p">,</span> <span class="n">Parameters</span><span class="p">,</span> <span class="n">Infos</span><span class="p">,</span> <span class="n">Units</span></div>
+
+
+
+<span class="c1"># def filetime_to_dt(ft):</span>
+<span class="c1">#     us = int(ft) // 10</span>
+<span class="c1">#     return dt.datetime(1601, 1, 1) + dt.timedelta(microseconds=us)</span>
+
+
+<div class="viewcode-block" id="velocity_from_UVPdata">
+<a class="viewcode-back" href="../../_autosummary/pyudv.read_mfprof.velocity_from_UVPdata.html#pyudv.read_mfprof.velocity_from_UVPdata">[docs]</a>
+<span class="k">def</span> <span class="nf">velocity_from_UVPdata</span><span class="p">(</span><span class="n">raw_data</span><span class="p">,</span>
+                          <span class="n">SoundSpeed</span><span class="p">,</span>
+                          <span class="n">MaximumDepth</span><span class="p">,</span>
+                          <span class="n">Angle</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span>
+                          <span class="n">Frequency</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span>
+                          <span class="n">Nbytes</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">8</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Calculate velocity from UDV raw data. Units must be checked outside of this function - no conversion is done here.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    raw_data : float, numpy array</span>
+<span class="sd">        Raw data coming out of the UDV.</span>
+<span class="sd">    SoundSpeed : float</span>
+<span class="sd">        Sound velocity.</span>
+<span class="sd">    MaximumDepth : float</span>
+<span class="sd">        Maximum depth measurement, as defined by the Pulse Repetition Frequency.</span>
+<span class="sd">    Angle : float</span>
+<span class="sd">        Angle between the probe and the flow direction.</span>
+<span class="sd">    Frequency : float</span>
+<span class="sd">        Frequency of the probe.</span>
+<span class="sd">    Nbytes : int</span>
+<span class="sd">        Number of bytes over which the raw data are coded (the default is 8).</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    float, numpy array</span>
+<span class="sd">        Velocity field</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">PRF</span> <span class="o">=</span> <span class="n">SoundSpeed</span> <span class="o">/</span> <span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">MaximumDepth</span><span class="p">)</span>  <span class="c1"># Pulse Repetiion Frequency</span>
+    <span class="n">N_DU</span> <span class="o">=</span> <span class="mi">2</span><span class="o">**</span><span class="n">Nbytes</span>  <span class="c1"># Number of possible velocities coded on &#39;Nbytes&#39;-bit</span>
+    <span class="n">Doppler_coeff</span> <span class="o">=</span> <span class="n">PRF</span> <span class="o">/</span> <span class="n">N_DU</span>  <span class="c1"># Doppler coefficient</span>
+    <span class="c1">#</span>
+    <span class="n">Fd</span> <span class="o">=</span> <span class="n">raw_data</span> <span class="o">*</span> <span class="n">Doppler_coeff</span>  <span class="c1"># Doppler frequencies</span>
+    <span class="n">Angle_correction</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span> <span class="o">*</span> <span class="n">Angle</span> <span class="o">/</span> <span class="mi">180</span><span class="p">)</span>  <span class="c1"># angle correction</span>
+    <span class="c1">#</span>
+    <span class="c1"># return radial velocity</span>
+    <span class="k">return</span> <span class="n">Fd</span> <span class="o">*</span> <span class="n">SoundSpeed</span> <span class="o">*</span> <span class="n">Angle_correction</span> <span class="o">/</span> <span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">Frequency</span><span class="p">)</span></div>
+
+
+
+<div class="viewcode-block" id="velocity_from_mfprof_reading">
+<a class="viewcode-back" href="../../_autosummary/pyudv.read_mfprof.velocity_from_mfprof_reading.html#pyudv.read_mfprof.velocity_from_mfprof_reading">[docs]</a>
+<span class="k">def</span> <span class="nf">velocity_from_mfprof_reading</span><span class="p">(</span><span class="n">Data</span><span class="p">:</span> <span class="nb">dict</span><span class="p">,</span>
+                                 <span class="n">Parameters</span><span class="p">:</span> <span class="nb">dict</span><span class="p">,</span>
+                                 <span class="n">Nbytes</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">8</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Calculate velocity from `Data` and `Parameters` dictionnaries as output of :func:`read_mfprof &lt;pyudv.read_mfprof.read_mfprof&gt;`,</span>
+<span class="sd">    using the function :func:`velocity_from_UVPdata &lt;pyudv.read_mfprof.velocity_from_UVPdata&gt;`.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    Data : dict</span>
+<span class="sd">        Data dictionnary coming from :func:`read_mfprof &lt;pyudv.read_mfprof.read_mfprof&gt;`.</span>
+<span class="sd">    Parameters : dict</span>
+<span class="sd">        Parameters dictionnary coming from :func:`read_mfprof &lt;pyudv.read_mfprof.read_mfprof&gt;`.</span>
+<span class="sd">    Nbytes : int</span>
+<span class="sd">        Number of bytes over which the raw data are coded (the default is 8).</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    float, numpy array</span>
+<span class="sd">        Velocity field</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">raw_data</span> <span class="o">=</span> <span class="n">Data</span><span class="p">[</span><span class="s2">&quot;DopplerData&quot;</span><span class="p">]</span>
+    <span class="n">SoundSpeed</span><span class="p">,</span> <span class="n">MaximumDepth</span><span class="p">,</span> <span class="n">Angle</span><span class="p">,</span> <span class="n">Frequency</span> <span class="o">=</span> <span class="p">(</span>
+        <span class="n">Parameters</span><span class="p">[</span><span class="s2">&quot;SoundSpeed&quot;</span><span class="p">],</span>
+        <span class="n">Parameters</span><span class="p">[</span><span class="s2">&quot;MaximumDepth&quot;</span><span class="p">],</span>
+        <span class="n">Parameters</span><span class="p">[</span><span class="s2">&quot;Angle&quot;</span><span class="p">],</span>
+        <span class="n">Parameters</span><span class="p">[</span><span class="s2">&quot;Frequency&quot;</span><span class="p">],</span>
+    <span class="p">)</span>
+    <span class="k">return</span> <span class="n">velocity_from_UVPdata</span><span class="p">(</span><span class="n">raw_data</span><span class="p">,</span>
+                                 <span class="n">SoundSpeed</span><span class="p">,</span>
+                                 <span class="n">MaximumDepth</span><span class="p">,</span>
+                                 <span class="n">Angle</span><span class="p">,</span>
+                                 <span class="n">Frequency</span><span class="p">,</span>
+                                 <span class="n">Nbytes</span><span class="o">=</span><span class="n">Nbytes</span><span class="p">)</span></div>
+
+
+
+<div class="viewcode-block" id="amplitude_from_UVPdata">
+<a class="viewcode-back" href="../../_autosummary/pyudv.read_mfprof.amplitude_from_UVPdata.html#pyudv.read_mfprof.amplitude_from_UVPdata">[docs]</a>
+<span class="k">def</span> <span class="nf">amplitude_from_UVPdata</span><span class="p">(</span>
+    <span class="n">raw_data</span><span class="p">,</span>
+    <span class="n">z</span><span class="p">,</span>
+    <span class="n">GainStart</span><span class="p">,</span>
+    <span class="n">GainEnd</span><span class="p">,</span>
+    <span class="n">zend</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span>
+    <span class="n">zstart</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.37</span> <span class="o">*</span> <span class="mf">1e-3</span><span class="p">,</span>
+    <span class="n">Nbytes</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">14</span><span class="p">,</span>
+    <span class="n">deltaV</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mi">5</span><span class="p">,</span>
+<span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Correct the raw amplitude data as outut of the UVP-DUO.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    raw_data : scalar, array</span>
+<span class="sd">        raw echo signal before demodulation outputted by the UVP.</span>
+<span class="sd">    z : scalar, array</span>
+<span class="sd">        position corresponding to `raw_data`.</span>
+<span class="sd">    GainStart : scalar</span>
+<span class="sd">        start absolute gain.</span>
+<span class="sd">    GainEnd : scalar</span>
+<span class="sd">        end absolute gain.</span>
+<span class="sd">    zend : float</span>
+<span class="sd">        Maximum measurable distance by the UVP.</span>
+<span class="sd">    zstart : float</span>
+<span class="sd">        minimum measurable distance by the UVP (the default is 0.00037)).</span>
+<span class="sd">    Nbytes : int</span>
+<span class="sd">        Number of bytes over which the raw data are coded (the default is 14).</span>
+<span class="sd">    deltaV : int</span>
+<span class="sd">        Volt range corresponding to the number of bytes (the default is 5).</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    scalar, array</span>
+<span class="sd">        Unamplified/corrected echo signal.</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="p">(</span><span class="n">raw_data</span> <span class="o">*</span> <span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="n">GainStart</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="n">GainStart</span> <span class="o">/</span> <span class="n">GainEnd</span><span class="p">)</span><span class="o">**</span><span class="p">((</span><span class="n">z</span><span class="o">-</span><span class="n">zstart</span><span class="p">)</span> <span class="o">/</span>
+                                                               <span class="p">(</span><span class="n">zend</span><span class="o">-</span><span class="n">zstart</span><span class="p">))</span> <span class="o">*</span>
+            <span class="n">deltaV</span> <span class="o">/</span> <span class="mi">2</span><span class="o">**</span><span class="n">Nbytes</span><span class="p">)</span></div>
+
+
+
+<div class="viewcode-block" id="amplitude_from_mfprof_reading">
+<a class="viewcode-back" href="../../_autosummary/pyudv.read_mfprof.amplitude_from_mfprof_reading.html#pyudv.read_mfprof.amplitude_from_mfprof_reading">[docs]</a>
+<span class="k">def</span> <span class="nf">amplitude_from_mfprof_reading</span><span class="p">(</span><span class="n">Data</span><span class="p">:</span> <span class="nb">dict</span><span class="p">,</span>
+                                  <span class="n">Parameters</span><span class="p">:</span> <span class="nb">dict</span><span class="p">,</span>
+                                  <span class="n">Nbytes</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">14</span><span class="p">,</span>
+                                  <span class="n">deltaV</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mi">5</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Calculate the unamplified/corrected echo signal from `Data` and `Parameters` dictionnaries as output of :func:`read_mfprof &lt;pyudv.read_mfprof.read_mfprof&gt;`,</span>
+<span class="sd">    using the function :func:`amplitude_from_UVPdata &lt;pyudv.read_mfprof.amplitude_from_UVPdata&gt;`.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    Data : dict</span>
+<span class="sd">        Data dictionnary coming from :func:`read_mfprof &lt;pyudv.read_mfprof.read_mfprof&gt;`.</span>
+<span class="sd">    Parameters : dict</span>
+<span class="sd">        Parameters dictionnary coming from :func:`read_mfprof &lt;pyudv.read_mfprof.read_mfprof&gt;`.</span>
+<span class="sd">    Nbytes : int</span>
+<span class="sd">        Number of bytes over which the raw data are coded (the default is 14).</span>
+<span class="sd">    deltaV : int</span>
+<span class="sd">        Volt range corresponding to the number of bytes (the default is 5).</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    scalar, array</span>
+<span class="sd">        Unamplified/corrected echo signal.</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">raw_data</span><span class="p">,</span> <span class="n">z</span> <span class="o">=</span> <span class="n">Data</span><span class="p">[</span><span class="s2">&quot;AmplitudeData&quot;</span><span class="p">],</span> <span class="n">Data</span><span class="p">[</span><span class="s2">&quot;DistanceAlongBeam&quot;</span><span class="p">][:,</span> <span class="kc">None</span><span class="p">]</span>
+    <span class="n">zend</span> <span class="o">=</span> <span class="n">Parameters</span><span class="p">[</span><span class="s2">&quot;MaximumDepth&quot;</span><span class="p">]</span>
+    <span class="n">F0</span> <span class="o">=</span> <span class="n">Parameters</span><span class="p">[</span><span class="s2">&quot;Frequency&quot;</span><span class="p">]</span> <span class="o">/</span> <span class="mf">1e6</span>  <span class="c1"># frequency in Mhz</span>
+    <span class="n">GainStart</span><span class="p">,</span> <span class="n">GainEnd</span> <span class="o">=</span> <span class="p">(</span>
+        <span class="n">Absolute_gains</span><span class="p">[</span><span class="n">F0</span><span class="p">][</span><span class="n">Parameters</span><span class="p">[</span><span class="s2">&quot;GainStart&quot;</span><span class="p">]],</span>
+        <span class="n">Absolute_gains</span><span class="p">[</span><span class="n">F0</span><span class="p">][</span><span class="n">Parameters</span><span class="p">[</span><span class="s2">&quot;GainEnd&quot;</span><span class="p">]],</span>
+    <span class="p">)</span>
+    <span class="k">return</span> <span class="n">amplitude_from_UVPdata</span><span class="p">(</span><span class="n">raw_data</span><span class="p">,</span>
+                                  <span class="n">z</span><span class="p">,</span>
+                                  <span class="n">GainStart</span><span class="p">,</span>
+                                  <span class="n">GainEnd</span><span class="p">,</span>
+                                  <span class="n">zend</span><span class="p">,</span>
+                                  <span class="n">Nbytes</span><span class="o">=</span><span class="n">Nbytes</span><span class="p">,</span>
+                                  <span class="n">deltaV</span><span class="o">=</span><span class="n">deltaV</span><span class="p">)</span></div>
+
+
+
+<span class="c1"># #### Writing functions</span>
+
+
+<div class="viewcode-block" id="write_dictionnary">
+<a class="viewcode-back" href="../../_autosummary/pyudv.read_mfprof.write_dictionnary.html#pyudv.read_mfprof.write_dictionnary">[docs]</a>
+<span class="k">def</span> <span class="nf">write_dictionnary</span><span class="p">(</span><span class="n">dico</span><span class="p">:</span> <span class="nb">dict</span><span class="p">,</span> <span class="n">file</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Write parameter dictionnary to a .txt file.</span>
+<span class="sd">    Each line of this file is a dictionnary key, followed by the corresponding entry, directly converted using :func:`str &lt;str&gt;`.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    dico : dict</span>
+<span class="sd">        input dictionnary</span>
+<span class="sd">    file : str</span>
+<span class="sd">        output txt file.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+
+<span class="sd">        Nothing.</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">file</span><span class="p">,</span> <span class="s2">&quot;w&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+        <span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">dico</span><span class="o">.</span><span class="n">keys</span><span class="p">()):</span>
+            <span class="n">line</span> <span class="o">=</span> <span class="n">key</span> <span class="o">+</span> <span class="s2">&quot;: &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">dico</span><span class="p">[</span><span class="n">key</span><span class="p">])</span> <span class="o">+</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span>
+            <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">line</span><span class="p">)</span></div>
+
+
+
+<span class="k">def</span> <span class="nf">_create_variable</span><span class="p">(</span>
+    <span class="n">netcdf_group</span><span class="p">,</span>
+    <span class="n">name</span><span class="p">,</span>
+    <span class="n">data</span><span class="p">,</span>
+    <span class="n">dimensions</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">std</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">unit</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">comments</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="nb">type</span><span class="o">=</span><span class="s2">&quot;float64&quot;</span><span class="p">,</span>
+<span class="p">):</span>
+    <span class="k">if</span> <span class="n">dimensions</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">var</span> <span class="o">=</span> <span class="n">netcdf_group</span><span class="o">.</span><span class="n">createVariable</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="nb">type</span><span class="p">,</span> <span class="p">(</span><span class="n">dimensions</span><span class="p">))</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">var</span> <span class="o">=</span> <span class="n">netcdf_group</span><span class="o">.</span><span class="n">createVariable</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="nb">type</span><span class="p">)</span>
+    <span class="n">var</span><span class="p">[:]</span> <span class="o">=</span> <span class="n">data</span>
+    <span class="k">if</span> <span class="n">std</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">var</span><span class="o">.</span><span class="n">std</span> <span class="o">=</span> <span class="n">std</span>
+    <span class="k">if</span> <span class="n">unit</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">var</span><span class="o">.</span><span class="n">unit</span> <span class="o">=</span> <span class="n">unit</span>
+    <span class="k">if</span> <span class="n">comments</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">var</span><span class="o">.</span><span class="n">comments</span> <span class="o">=</span> <span class="n">comments</span>
+
+
+<div class="viewcode-block" id="mfprof_to_netcdf">
+<a class="viewcode-back" href="../../_autosummary/pyudv.read_mfprof.mfprof_to_netcdf.html#pyudv.read_mfprof.mfprof_to_netcdf">[docs]</a>
+<span class="k">def</span> <span class="nf">mfprof_to_netcdf</span><span class="p">(</span><span class="n">input_mfprof</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+                     <span class="n">output_netcdf</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="nb">object</span><span class="p">,</span>
+                     <span class="n">add_attr</span><span class="p">:</span> <span class="nb">dict</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+                     <span class="n">cut_zeros</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Convert a .mfprof file to a netCDF file.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    input_mfprof : str</span>
+<span class="sd">        input .mfprof file path</span>
+<span class="sd">    output_netcdf : str | object</span>
+<span class="sd">        output netCDF file path, or netCDF4 object (Dataset, Group) in which the data will be stored.</span>
+<span class="sd">    add_attr : dict, optional</span>
+<span class="sd">        dictionnary containing attributes to be added to the netCDF file, by default None. For example, `add_attr = {name: &#39;John Smith&#39;, team: &#39;the best&#39;}`</span>
+<span class="sd">    cut_zeros : bool, optional</span>
+<span class="sd">        If True, cut the measurements data and remove all the trailing 0 added when the measurements are stopped bedore the attributed time, by default True</span>
+
+<span class="sd">    Examples</span>
+<span class="sd">    --------</span>
+<span class="sd">    &gt;&gt;&gt; mfprof_to_netcdf(&#39;input.mfprof&#39;, &#39;output.nc&#39;, add_attr = {name: &#39;John Smith&#39;, team: &#39;the best&#39;}, cut_zeros=True)</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">output_netcdf</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
+        <span class="n">newfile</span> <span class="o">=</span> <span class="n">netCDF4</span><span class="o">.</span><span class="n">Dataset</span><span class="p">(</span><span class="n">output_netcdf</span><span class="p">,</span> <span class="s2">&quot;w&quot;</span><span class="p">,</span> <span class="nb">format</span><span class="o">=</span><span class="s2">&quot;NETCDF4&quot;</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">newfile</span> <span class="o">=</span> <span class="n">output_netcdf</span>
+    <span class="c1">#</span>
+    <span class="n">Data</span><span class="p">,</span> <span class="n">Parameters</span><span class="p">,</span> <span class="n">Info</span><span class="p">,</span> <span class="n">Units</span> <span class="o">=</span> <span class="n">read_mfprof</span><span class="p">(</span><span class="n">input_mfprof</span><span class="p">)</span>
+    <span class="n">amplitude_data</span> <span class="o">=</span> <span class="n">amplitude_from_mfprof_reading</span><span class="p">(</span><span class="n">Data</span><span class="p">,</span> <span class="n">Parameters</span><span class="p">)</span>
+    <span class="n">velocity_data</span> <span class="o">=</span> <span class="n">velocity_from_mfprof_reading</span><span class="p">(</span><span class="n">Data</span><span class="p">,</span> <span class="n">Parameters</span><span class="p">)</span>
+    <span class="c1">#</span>
+    <span class="n">tmax</span> <span class="o">=</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">argwhere</span><span class="p">(</span><span class="n">Data</span><span class="p">[</span><span class="s2">&quot;transducer&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">squeeze</span><span class="p">()[</span><span class="mi">0</span><span class="p">]</span> <span class="k">if</span>
+            <span class="p">((</span><span class="n">Data</span><span class="p">[</span><span class="s2">&quot;transducer&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">any</span><span class="p">()</span> <span class="o">&amp;</span> <span class="n">cut_zeros</span><span class="p">)</span> <span class="k">else</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+    <span class="c1"># ### fill Data</span>
+    <span class="n">newfile</span><span class="o">.</span><span class="n">createDimension</span><span class="p">(</span><span class="s2">&quot;time&quot;</span><span class="p">,</span> <span class="n">Data</span><span class="p">[</span><span class="s2">&quot;profileTime&quot;</span><span class="p">][:</span><span class="n">tmax</span><span class="p">]</span><span class="o">.</span><span class="n">size</span><span class="p">)</span>
+    <span class="n">newfile</span><span class="o">.</span><span class="n">createDimension</span><span class="p">(</span><span class="s2">&quot;z&quot;</span><span class="p">,</span> <span class="n">Data</span><span class="p">[</span><span class="s2">&quot;DistanceAlongBeam&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">size</span><span class="p">)</span>
+    <span class="c1">#</span>
+    <span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">var</span> <span class="ow">in</span> <span class="n">Data</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+        <span class="k">if</span> <span class="n">key</span> <span class="ow">in</span> <span class="p">[</span><span class="s2">&quot;DistanceAlongBeam&quot;</span><span class="p">]:</span>
+            <span class="n">dims</span> <span class="o">=</span> <span class="s2">&quot;z&quot;</span>
+        <span class="k">elif</span> <span class="n">key</span> <span class="ow">in</span> <span class="p">[</span><span class="s2">&quot;profileTime&quot;</span><span class="p">,</span> <span class="s2">&quot;transducer&quot;</span><span class="p">]:</span>
+            <span class="n">dims</span> <span class="o">=</span> <span class="s2">&quot;time&quot;</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">dims</span> <span class="o">=</span> <span class="p">(</span><span class="s2">&quot;z&quot;</span><span class="p">,</span> <span class="s2">&quot;time&quot;</span><span class="p">)</span>
+        <span class="c1">#</span>
+        <span class="n">_create_variable</span><span class="p">(</span>
+            <span class="n">newfile</span><span class="p">,</span>
+            <span class="n">key</span><span class="p">,</span>
+            <span class="n">var</span><span class="p">[</span><span class="o">...</span><span class="p">,</span> <span class="p">:</span><span class="n">tmax</span><span class="p">]</span> <span class="k">if</span> <span class="n">key</span> <span class="o">!=</span> <span class="s2">&quot;DistanceAlongBeam&quot;</span> <span class="k">else</span> <span class="n">var</span><span class="p">,</span>
+            <span class="n">dimensions</span><span class="o">=</span><span class="n">dims</span><span class="p">,</span>
+            <span class="n">unit</span><span class="o">=</span><span class="n">Units</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="k">if</span> <span class="n">key</span> <span class="ow">in</span> <span class="n">Units</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span> <span class="k">else</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="p">)</span>
+    <span class="n">_create_variable</span><span class="p">(</span>
+        <span class="n">newfile</span><span class="p">,</span>
+        <span class="s2">&quot;amplitude_data&quot;</span><span class="p">,</span>
+        <span class="n">amplitude_data</span><span class="p">[</span><span class="o">...</span><span class="p">,</span> <span class="p">:</span><span class="n">tmax</span><span class="p">],</span>
+        <span class="n">dimensions</span><span class="o">=</span><span class="p">(</span><span class="s2">&quot;z&quot;</span><span class="p">,</span> <span class="s2">&quot;time&quot;</span><span class="p">),</span>
+        <span class="n">unit</span><span class="o">=</span><span class="s2">&quot;V&quot;</span><span class="p">,</span>
+    <span class="p">)</span>
+    <span class="n">_create_variable</span><span class="p">(</span>
+        <span class="n">newfile</span><span class="p">,</span>
+        <span class="s2">&quot;velocity_data&quot;</span><span class="p">,</span>
+        <span class="n">velocity_data</span><span class="p">[</span><span class="o">...</span><span class="p">,</span> <span class="p">:</span><span class="n">tmax</span><span class="p">],</span>
+        <span class="n">dimensions</span><span class="o">=</span><span class="p">(</span><span class="s2">&quot;z&quot;</span><span class="p">,</span> <span class="s2">&quot;time&quot;</span><span class="p">),</span>
+        <span class="n">unit</span><span class="o">=</span><span class="s2">&quot;m/s&quot;</span><span class="p">,</span>
+    <span class="p">)</span>
+    <span class="c1"># ### fill Parameters and Info</span>
+    <span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">var</span> <span class="ow">in</span> <span class="n">Parameters</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+        <span class="nb">setattr</span><span class="p">(</span><span class="n">newfile</span><span class="p">,</span> <span class="n">key</span><span class="p">,</span> <span class="n">var</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">var</span> <span class="ow">in</span> <span class="n">Info</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+        <span class="nb">setattr</span><span class="p">(</span><span class="n">newfile</span><span class="p">,</span> <span class="n">key</span><span class="p">,</span> <span class="n">var</span><span class="p">)</span>
+    <span class="c1"># ### fill additional attributes</span>
+    <span class="k">if</span> <span class="n">add_attr</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">var</span> <span class="ow">in</span> <span class="n">add_attr</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+            <span class="nb">setattr</span><span class="p">(</span><span class="n">newfile</span><span class="p">,</span> <span class="n">key</span><span class="p">,</span> <span class="n">var</span><span class="p">)</span>
+    <span class="c1">#</span>
+    <span class="k">if</span> <span class="n">cut_zeros</span><span class="p">:</span>
+        <span class="n">newfile</span><span class="o">.</span><span class="n">cut_zeros</span> <span class="o">=</span> <span class="s2">&quot;True. File has been shortened while converted to netcdf as there was trailing unused zeros.&quot;</span>
+        <span class="n">newfile</span><span class="o">.</span><span class="n">NumberOfCyclesShort</span> <span class="o">=</span> <span class="n">Data</span><span class="p">[</span><span class="s2">&quot;profileTime&quot;</span><span class="p">][:</span><span class="n">tmax</span><span class="p">]</span><span class="o">.</span><span class="n">size</span>
+    <span class="c1">#</span>
+    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">output_netcdf</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
+        <span class="n">newfile</span><span class="o">.</span><span class="n">close</span><span class="p">()</span></div>
+
+</pre></div>
+
+                </article>
+              
+              
+              
+              
+              
+            </div>
+            
+            
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/bootstrap.js?digest=365ca57ee442770a23c6"></script>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=365ca57ee442770a23c6"></script>
+
+  <footer class="bd-footer">
+<div class="bd-footer__inner bd-page-width">
+  
+    <div class="footer-items__start">
+      
+        <div class="footer-item">
+  <p class="copyright">
+    
+      © Copyright 2023, Cyril Gadal.
+      <br/>
+    
+  </p>
+</div>
+      
+        <div class="footer-item">
+  <p class="sphinx-version">
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 7.2.6.
+    <br/>
+  </p>
+</div>
+      
+    </div>
+  
+  
+  
+    <div class="footer-items__end">
+      
+        <div class="footer-item"><p class="theme-version">
+  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.14.3.
+</p></div>
+      
+    </div>
+  
+</div>
+
+  </footer>
+  </body>
+</html>

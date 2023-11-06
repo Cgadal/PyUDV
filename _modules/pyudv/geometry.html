@@ -1,0 +1,1042 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>pyudv.geometry &#8212; pyudv  documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=365ca57ee442770a23c6" rel="stylesheet" />
+<link href="../../_static/styles/bootstrap.css?digest=365ca57ee442770a23c6" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=365ca57ee442770a23c6" rel="stylesheet" />
+
+  
+  <link href="../../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=365ca57ee442770a23c6" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery.css?v=61a4c737" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery-binder.css?v=f4aeca0c" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery-dataframe.css?v=2082cf3c" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery-rendered-html.css?v=1277b6f3" />
+    <link rel="stylesheet" type="text/css" href="../../_static/pydata-custom.css?v=2e59d9c9" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=365ca57ee442770a23c6" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=365ca57ee442770a23c6" />
+  <script src="../../_static/vendor/fontawesome/6.1.2/js/all.min.js?digest=365ca57ee442770a23c6"></script>
+
+    <script src="../../_static/documentation_options.js?v=7f41d439"></script>
+    <script src="../../_static/doctools.js?v=888ff710"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = '_modules/pyudv/geometry';</script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+<div class="bd-header__inner bd-page-width">
+  <label class="sidebar-toggle primary-toggle" for="__primary">
+    <span class="fa-solid fa-bars"></span>
+  </label>
+  
+  
+  <div class="col-lg-3 navbar-header-items__start">
+    
+      <div class="navbar-item">
+  
+
+<a class="navbar-brand logo" href="../../index.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">pyudv</p>
+  
+</a></div>
+    
+  </div>
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
+      
+        <div class="navbar-item"><nav class="navbar-nav">
+  <p class="sidebar-header-items__title"
+     role="heading"
+     aria-level="1"
+     aria-label="Site Navigation">
+    Site Navigation
+  </p>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../../index.html">
+                        Home page
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../../_examples/index.html">
+                        Examples
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../../_autosummary/pyudv.html">
+                        API reference
+                      </a>
+                    </li>
+                
+  </ul>
+</nav></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+ <script>
+ document.write(`
+   <button class="btn navbar-btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script>
+        </div>
+      
+      
+        <div class="navbar-item">
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script></div>
+      
+        <div class="navbar-item"><ul class="navbar-icon-links navbar-nav"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/cgadal-pythonpackages/pyudv" title="GitHub" class="nav-link" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><span><i class="fa-brands fa-square-github fa-lg" aria-hidden="true"></i></span>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+</ul></div>
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+ <script>
+ document.write(`
+   <button class="btn navbar-btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script>
+    </div>
+  
+
+  
+</div>
+
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar hide-on-wide">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          <div class="navbar-item"><nav class="navbar-nav">
+  <p class="sidebar-header-items__title"
+     role="heading"
+     aria-level="1"
+     aria-label="Site Navigation">
+    Site Navigation
+  </p>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../../index.html">
+                        Home page
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../../_examples/index.html">
+                        Examples
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../../_autosummary/pyudv.html">
+                        API reference
+                      </a>
+                    </li>
+                
+  </ul>
+</nav></div>
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item">
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script></div>
+        
+          <div class="navbar-item"><ul class="navbar-icon-links navbar-nav"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/cgadal-pythonpackages/pyudv" title="GitHub" class="nav-link" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><span><i class="fa-brands fa-square-github fa-lg" aria-hidden="true"></i></span>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+</ul></div>
+        
+      </div>
+    
+  </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+
+
+
+<nav aria-label="Breadcrumb">
+  <ul class="bd-breadcrumbs">
+    
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="../../index.html" class="nav-link" aria-label="Home">
+        <i class="fa-solid fa-home"></i>
+      </a>
+    </li>
+    
+    <li class="breadcrumb-item"><a href="../index.html" class="nav-link">Module code</a></li>
+    
+    <li class="breadcrumb-item active" aria-current="page">pyudv.geometry</li>
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <h1>Source code for pyudv.geometry</h1><div class="highlight"><pre>
+<span></span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">This module helps you deal with probe geometries.</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="kn">import</span> <span class="nn">matplotlib.axes</span> <span class="k">as</span> <span class="nn">mplaxes</span>
+<span class="kn">import</span> <span class="nn">matplotlib.colors</span> <span class="k">as</span> <span class="nn">mpcolor</span>
+<span class="kn">import</span> <span class="nn">matplotlib.patches</span> <span class="k">as</span> <span class="nn">mptch</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">numpy.typing</span> <span class="k">as</span> <span class="nn">npt</span>
+<span class="kn">import</span> <span class="nn">scipy.interpolate</span> <span class="k">as</span> <span class="nn">scipyinterp</span>
+
+<span class="kn">import</span> <span class="nn">pyudv.helpers</span> <span class="k">as</span> <span class="nn">ph</span>
+
+
+<div class="viewcode-block" id="Transducer">
+<a class="viewcode-back" href="../../_autosummary/pyudv.geometry.Transducer.html#pyudv.geometry.Transducer">[docs]</a>
+<span class="k">class</span> <span class="nc">Transducer</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">     A class used to caracterize a transducer physical properties.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    activediameter : float, optional</span>
+<span class="sd">        transducer active diameter, by default None</span>
+<span class="sd">    overalldiameter : float, optional</span>
+<span class="sd">        transducer overall diameter, by default None</span>
+<span class="sd">    overalllength : float, optional</span>
+<span class="sd">        transducer overall length, by default None</span>
+<span class="sd">    nearfield : float, optional</span>
+<span class="sd">        transducer near-field distance, by default None</span>
+<span class="sd">    halfangle : float, optional</span>
+<span class="sd">        transducer divegence half-angle (deg.), by default None</span>
+<span class="sd">    freq : float, optional</span>
+<span class="sd">        transducer centre frequency, by default None</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span>
+                 <span class="n">activediameter</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+                 <span class="n">overalldiameter</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+                 <span class="n">overalllength</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+                 <span class="n">nearfield</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+                 <span class="n">halfangle</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+                 <span class="n">freq</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        activediameter : float, optional</span>
+<span class="sd">            transducer active diameter, by default None</span>
+<span class="sd">        overalldiameter : float, optional</span>
+<span class="sd">            transducer overall diameter, by default None</span>
+<span class="sd">        overalllength : float, optional</span>
+<span class="sd">            transducer overall length, by default None</span>
+<span class="sd">        nearfield : float, optional</span>
+<span class="sd">            transducer near-field distance, by default None</span>
+<span class="sd">        halfangle : float, optional</span>
+<span class="sd">            transducer divegence half-angle (deg.), by default None</span>
+<span class="sd">        freq : float, optional</span>
+<span class="sd">            transducer centre frequency, by default None</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">activediameter</span> <span class="o">=</span> <span class="n">activediameter</span>  <span class="c1">#: transducer active diameter</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">overalldiameter</span> <span class="o">=</span> <span class="n">overalldiameter</span>  <span class="c1">#: transducer overall diameter</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">overalllength</span> <span class="o">=</span> <span class="n">overalllength</span>  <span class="c1">#: transducer overall length</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">nearfield</span> <span class="o">=</span> <span class="n">nearfield</span>  <span class="c1">#: transducer near-field distance</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">halfangle</span> <span class="o">=</span> <span class="n">halfangle</span>  <span class="c1">#: transducer beam half divergence angle</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">freq</span> <span class="o">=</span> <span class="n">freq</span>  <span class="c1">#: transducer frequency</span>
+        <span class="c1">#</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">width_at_nearfield</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">beam_width</span><span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">nearfield</span><span class="p">)</span>  <span class="c1">#: beam width at near-field distance</span>
+
+<div class="viewcode-block" id="Transducer.beam_width">
+<a class="viewcode-back" href="../../_autosummary/pyudv.geometry.Transducer.beam_width.html#pyudv.geometry.Transducer.beam_width">[docs]</a>
+    <span class="k">def</span> <span class="nf">beam_width</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">distance</span><span class="p">:</span> <span class="nb">float</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Compute the beam width at a certain distance from the beam half divergence angle.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        distance : float</span>
+<span class="sd">            distance</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        float</span>
+<span class="sd">            beam width at a distance</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">activediameter</span> <span class="o">+</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">tan</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">radians</span><span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">halfangle</span><span class="p">))</span> <span class="o">*</span> <span class="n">distance</span></div>
+</div>
+
+
+
+<span class="c1"># registering metflow probes</span>
+<span class="n">_MetFlow05Mhz</span> <span class="o">=</span> <span class="n">Transducer</span><span class="p">(</span><span class="n">freq</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span>
+                           <span class="n">activediameter</span><span class="o">=</span><span class="mi">19</span><span class="p">,</span>
+                           <span class="n">overalldiameter</span><span class="o">=</span><span class="mi">23</span><span class="p">,</span>
+                           <span class="n">overalllength</span><span class="o">=</span><span class="mi">60</span><span class="p">,</span>
+                           <span class="n">nearfield</span><span class="o">=</span><span class="mf">30.5</span><span class="p">,</span>
+                           <span class="n">halfangle</span><span class="o">=</span><span class="mf">4.6</span><span class="p">)</span>
+
+<span class="n">_MetFlow1Mhz</span> <span class="o">=</span> <span class="n">Transducer</span><span class="p">(</span><span class="n">freq</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+                          <span class="n">activediameter</span><span class="o">=</span><span class="mi">13</span><span class="p">,</span>
+                          <span class="n">overalldiameter</span><span class="o">=</span><span class="mi">16</span><span class="p">,</span>
+                          <span class="n">overalllength</span><span class="o">=</span><span class="mi">60</span><span class="p">,</span>
+                          <span class="n">nearfield</span><span class="o">=</span><span class="mf">28.5</span><span class="p">,</span>
+                          <span class="n">halfangle</span><span class="o">=</span><span class="mf">3.4</span><span class="p">)</span>
+
+<span class="n">_MetFlow2Mhz</span> <span class="o">=</span> <span class="n">Transducer</span><span class="p">(</span><span class="n">freq</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span>
+                          <span class="n">activediameter</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span>
+                          <span class="n">overalldiameter</span><span class="o">=</span><span class="mi">13</span><span class="p">,</span>
+                          <span class="n">overalllength</span><span class="o">=</span><span class="mi">60</span><span class="p">,</span>
+                          <span class="n">nearfield</span><span class="o">=</span><span class="mf">33.7</span><span class="p">,</span>
+                          <span class="n">halfangle</span><span class="o">=</span><span class="mf">2.2</span><span class="p">)</span>
+
+<span class="n">_MetFlow4Mhz</span> <span class="o">=</span> <span class="n">Transducer</span><span class="p">(</span><span class="n">freq</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span>
+                          <span class="n">activediameter</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span>
+                          <span class="n">overalldiameter</span><span class="o">=</span><span class="mi">8</span><span class="p">,</span>
+                          <span class="n">overalllength</span><span class="o">=</span><span class="mi">60</span><span class="p">,</span>
+                          <span class="n">nearfield</span><span class="o">=</span><span class="mf">16.9</span><span class="p">,</span>
+                          <span class="n">halfangle</span><span class="o">=</span><span class="mf">2.2</span><span class="p">)</span>
+<span class="n">_MetFlow8Mhz</span> <span class="o">=</span> <span class="n">Transducer</span><span class="p">(</span><span class="n">freq</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span>
+                          <span class="n">activediameter</span><span class="o">=</span><span class="mf">2.5</span><span class="p">,</span>
+                          <span class="n">overalldiameter</span><span class="o">=</span><span class="mi">8</span><span class="p">,</span>
+                          <span class="n">overalllength</span><span class="o">=</span><span class="mi">60</span><span class="p">,</span>
+                          <span class="n">nearfield</span><span class="o">=</span><span class="mf">8.43</span><span class="p">,</span>
+                          <span class="n">halfangle</span><span class="o">=</span><span class="mf">2.2</span><span class="p">)</span>
+
+<span class="n">MetFlowTransducers</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="mf">0.5</span><span class="p">:</span> <span class="n">_MetFlow05Mhz</span><span class="p">,</span>
+    <span class="mi">1</span><span class="p">:</span> <span class="n">_MetFlow1Mhz</span><span class="p">,</span>
+    <span class="mi">2</span><span class="p">:</span> <span class="n">_MetFlow2Mhz</span><span class="p">,</span>
+    <span class="mi">4</span><span class="p">:</span> <span class="n">_MetFlow4Mhz</span><span class="p">,</span>
+    <span class="mi">8</span><span class="p">:</span> <span class="n">_MetFlow8Mhz</span>
+<span class="p">}</span>
+<span class="sd">&quot;&quot;&quot;A dictionnary containing MetFlow :class:`Transducer &lt;pyudv.geometry.Transducer&gt;` object. All distances are stored in cm.&quot;&quot;&quot;</span>
+
+<span class="c1"># actually putting distances in cm</span>
+<span class="n">_distance_attr</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="s1">&#39;activediameter&#39;</span><span class="p">,</span> <span class="s1">&#39;overalldiameter&#39;</span><span class="p">,</span> <span class="s1">&#39;overalllength&#39;</span><span class="p">,</span> <span class="s1">&#39;nearfield&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;width_at_nearfield&#39;</span>
+<span class="p">]</span>
+<span class="k">for</span> <span class="n">transducer</span> <span class="ow">in</span> <span class="n">MetFlowTransducers</span><span class="o">.</span><span class="n">values</span><span class="p">():</span>
+    <span class="k">for</span> <span class="n">attr</span> <span class="ow">in</span> <span class="n">_distance_attr</span><span class="p">:</span>
+        <span class="nb">setattr</span><span class="p">(</span><span class="n">transducer</span><span class="p">,</span> <span class="n">attr</span><span class="p">,</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">transducer</span><span class="p">,</span> <span class="n">attr</span><span class="p">)</span> <span class="o">*</span> <span class="mf">1e-2</span><span class="p">)</span>
+
+
+<div class="viewcode-block" id="Probe">
+<a class="viewcode-back" href="../../_autosummary/pyudv.geometry.Probe.html#pyudv.geometry.Probe">[docs]</a>
+<span class="k">class</span> <span class="nc">Probe</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">     A class used to represent a single probe.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    r : ndarray, (N,)</span>
+<span class="sd">        a numpy array containing the radial coordinates of the beam.</span>
+<span class="sd">    alpha : float</span>
+<span class="sd">        orientation of the probe, in degree in the trigonometric referential.</span>
+<span class="sd">    Pref : list[float, ndarray]</span>
+<span class="sd">        A list a size 2 defining a reference point by containing its radial coordinate, and a numpy array containing its coordinate in the &quot;real&quot; reference space.</span>
+<span class="sd">    transducer : Transducer, optional</span>
+<span class="sd">        :class:`Transducer &lt;pyudv.geometry.Transducer&gt;` object giving the physical probe properties, by default None</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span>
+                 <span class="n">r</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span>
+                 <span class="n">alpha</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span>
+                 <span class="n">Pref</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">],</span>
+                 <span class="n">transducer</span><span class="p">:</span> <span class="n">Transducer</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        r : ndarray</span>
+<span class="sd">            a numpy array containing the radial coordinates of the beam.</span>
+<span class="sd">        alpha : float</span>
+<span class="sd">            orientation of the probe, in degree in the trigonometric referential.</span>
+<span class="sd">        Pref : list[float, ndarray]</span>
+<span class="sd">            A list a size 2 defining a reference point by containing its radial coordinate, and a numpy array containing its coordinate in the &quot;real&quot; reference space.</span>
+<span class="sd">        transducer : Transducer, optional</span>
+<span class="sd">            :class:`Transducer &lt;pyudv.geometry.Transducer&gt;` object giving the physical probe properties, by default None</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">r</span> <span class="o">=</span> <span class="n">r</span>  <span class="c1">#: vector along beam axis</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">alpha</span> <span class="o">=</span> <span class="n">alpha</span>  <span class="c1">#: beam axis inclination, trigo referential</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">Pref</span> <span class="o">=</span> <span class="n">Pref</span>  <span class="c1">#: reference point [r_ref, (x_ref, y_ref)]</span>
+        <span class="c1">#</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">r_ref</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">Pref</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>  <span class="c1">#: reference point radial coordinats</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">X_ref</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">Pref</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>  <span class="c1">#: reference point real coordinates</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">unit_vec</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span>
+            <span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">radians</span><span class="p">(</span><span class="n">alpha</span><span class="p">)),</span>
+            <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">radians</span><span class="p">(</span><span class="n">alpha</span><span class="p">))</span>
+        <span class="p">])</span>  <span class="c1">#: unit vector defining the beam direction in real coordinates</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">unit_vec_perp</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span>
+            <span class="p">[</span><span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">radians</span><span class="p">(</span><span class="n">alpha</span><span class="p">)),</span>
+             <span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">radians</span><span class="p">(</span><span class="n">alpha</span><span class="p">))]</span>
+        <span class="p">)</span>  <span class="c1">#: unit vector defining the beam perpendicular direction in real coordinates</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">O</span> <span class="o">=</span> <span class="p">(</span><span class="n">Pref</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">Pref</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">unit_vec</span>
+                  <span class="p">)</span>  <span class="c1">#: coordinates of the origin of the beam</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">E</span> <span class="o">=</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">X_ref</span> <span class="o">+</span> <span class="p">(</span><span class="n">r</span><span class="o">.</span><span class="n">max</span><span class="p">()</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">r_ref</span><span class="p">)</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">unit_vec</span>
+                  <span class="p">)</span>  <span class="c1">#: coordinates of the end of the beam</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">transducer</span> <span class="o">=</span> <span class="n">transducer</span>
+        <span class="c1"># Beam coordinates</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">x</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">r_to_x</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">r</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">z</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">r_to_z</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">r</span><span class="p">)</span>
+
+<div class="viewcode-block" id="Probe.r_to_z">
+<a class="viewcode-back" href="../../_autosummary/pyudv.geometry.Probe.r_to_z.html#pyudv.geometry.Probe.r_to_z">[docs]</a>
+    <span class="k">def</span> <span class="nf">r_to_z</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">r</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span> <span class="o">|</span> <span class="nb">float</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span> <span class="o">|</span> <span class="nb">float</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Convert radial coordinates of the probe into z coordinates</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        r : np.ndarray | float</span>
+<span class="sd">            radial coordinate</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        np.ndarray | float</span>
+<span class="sd">            corresponding z coordinate</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">O</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="n">r</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">unit_vec</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span></div>
+
+
+<div class="viewcode-block" id="Probe.r_to_x">
+<a class="viewcode-back" href="../../_autosummary/pyudv.geometry.Probe.r_to_x.html#pyudv.geometry.Probe.r_to_x">[docs]</a>
+    <span class="k">def</span> <span class="nf">r_to_x</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">r</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span> <span class="o">|</span> <span class="nb">float</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span> <span class="o">|</span> <span class="nb">float</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Convert radial coordinates of the probe into x coordinates</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        r : np.ndarray | float</span>
+<span class="sd">            corresponding x coordinate</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        np.ndarray | float</span>
+<span class="sd">            corresponding z coordinate</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">O</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="n">r</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">unit_vec</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span></div>
+
+
+<div class="viewcode-block" id="Probe.xz_to_r">
+<a class="viewcode-back" href="../../_autosummary/pyudv.geometry.Probe.xz_to_r.html#pyudv.geometry.Probe.xz_to_r">[docs]</a>
+    <span class="k">def</span> <span class="nf">xz_to_r</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">xz</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">axis</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Convert xz coordinates into probe radial coordinates</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        xz : np.ndarray</span>
+<span class="sd">            xz coordinate</span>
+<span class="sd">        axis : int, optional</span>
+<span class="sd">            axis along which the norm is calculated, by default -1</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        np.ndarray</span>
+<span class="sd">            radial coordinates</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">xz</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">O</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="n">axis</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="Probe.plot_probe">
+<a class="viewcode-back" href="../../_autosummary/pyudv.geometry.Probe.plot_probe.html#pyudv.geometry.Probe.plot_probe">[docs]</a>
+    <span class="k">def</span> <span class="nf">plot_probe</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span>
+                   <span class="n">ax</span><span class="p">:</span> <span class="n">mplaxes</span><span class="o">.</span><span class="n">Axes</span><span class="p">,</span>
+                   <span class="n">color</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+                   <span class="n">plot_transducer</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Sketch the probe and its beam on a given matplotlib axe.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        ax : mplaxes.Axes</span>
+<span class="sd">            matplotlib axe on which the probe is sketched.</span>
+<span class="sd">        color : str, optional</span>
+<span class="sd">            probe color, by default None</span>
+<span class="sd">        plot_transducer: bool, optional</span>
+<span class="sd">            whether or not to plot the transducer physical properties, by default True. Only works if a :class:`Transducer &lt;pyudv.geometry.Transducer&gt;` object has been passed to the :class:`Probe &lt;pyudv.geometry.Probe&gt;` object during its creation.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">a</span> <span class="o">=</span> <span class="n">ax</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">O</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="bp">self</span><span class="o">.</span><span class="n">O</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="n">color</span><span class="p">)</span>
+        <span class="n">color</span> <span class="o">=</span> <span class="n">a</span><span class="o">.</span><span class="n">get_facecolor</span><span class="p">()</span>
+        <span class="k">if</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">transducer</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">)</span> <span class="o">&amp;</span> <span class="n">plot_transducer</span><span class="p">:</span>
+            <span class="c1"># ### plot transducer</span>
+            <span class="n">a</span><span class="o">.</span><span class="n">remove</span><span class="p">()</span>
+            <span class="n">height</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">transducer</span><span class="o">.</span><span class="n">overalldiameter</span>
+            <span class="n">width</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">transducer</span><span class="o">.</span><span class="n">overalllength</span>
+            <span class="n">angle</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">alpha</span>
+            <span class="n">xy</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">O</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">width</span><span class="p">,</span> <span class="n">height</span> <span class="o">/</span> <span class="mi">2</span><span class="p">])</span>
+            <span class="n">rect</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">Rectangle</span><span class="p">(</span><span class="n">xy</span><span class="p">,</span>
+                                 <span class="n">width</span><span class="p">,</span>
+                                 <span class="n">height</span><span class="p">,</span>
+                                 <span class="n">angle</span><span class="o">=</span><span class="n">angle</span><span class="p">,</span>
+                                 <span class="n">rotation_point</span><span class="o">=</span><span class="nb">tuple</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">O</span><span class="p">),</span>
+                                 <span class="n">facecolor</span><span class="o">=</span><span class="n">mpcolor</span><span class="o">.</span><span class="n">to_rgba</span><span class="p">(</span><span class="n">color</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">),</span>
+                                 <span class="n">edgecolor</span><span class="o">=</span><span class="n">color</span><span class="p">)</span>
+            <span class="n">ax</span><span class="o">.</span><span class="n">add_patch</span><span class="p">(</span><span class="n">rect</span><span class="p">)</span>
+            <span class="c1"># #### plot beam</span>
+            <span class="n">max_width</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">transducer</span><span class="o">.</span><span class="n">beam_width</span><span class="p">(</span>
+                <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">E</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">O</span><span class="p">))</span>
+            <span class="n">xy</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">O</span> <span class="o">-</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">unit_vec_perp</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">transducer</span><span class="o">.</span><span class="n">activediameter</span> <span class="o">/</span> <span class="mi">2</span><span class="p">,</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">E</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">unit_vec_perp</span> <span class="o">*</span> <span class="n">max_width</span> <span class="o">/</span> <span class="mi">2</span><span class="p">,</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">E</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">unit_vec_perp</span> <span class="o">*</span> <span class="n">max_width</span> <span class="o">/</span> <span class="mi">2</span><span class="p">,</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">O</span> <span class="o">+</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">unit_vec_perp</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">transducer</span><span class="o">.</span><span class="n">activediameter</span> <span class="o">/</span> <span class="mi">2</span><span class="p">,</span>
+            <span class="p">])</span>
+            <span class="n">poly</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">Polygon</span><span class="p">(</span><span class="n">xy</span><span class="p">,</span>
+                               <span class="n">edgecolor</span><span class="o">=</span><span class="n">color</span><span class="p">,</span>
+                               <span class="n">facecolor</span><span class="o">=</span><span class="n">mpcolor</span><span class="o">.</span><span class="n">to_rgba</span><span class="p">(</span><span class="n">color</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">),</span>
+                               <span class="n">linewidth</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+            <span class="n">ax</span><span class="o">.</span><span class="n">add_patch</span><span class="p">(</span><span class="n">poly</span><span class="p">)</span>
+            <span class="c1"># #### plot nearfield</span>
+            <span class="n">p</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">O</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">unit_vec</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">transducer</span><span class="o">.</span><span class="n">nearfield</span>
+            <span class="n">xy</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">O</span> <span class="o">-</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">unit_vec_perp</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">transducer</span><span class="o">.</span><span class="n">activediameter</span> <span class="o">/</span> <span class="mi">2</span><span class="p">,</span>
+                <span class="n">p</span> <span class="o">-</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">unit_vec_perp</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">transducer</span><span class="o">.</span><span class="n">width_at_nearfield</span> <span class="o">/</span> <span class="mi">2</span><span class="p">,</span>
+                <span class="n">p</span> <span class="o">+</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">unit_vec_perp</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">transducer</span><span class="o">.</span><span class="n">width_at_nearfield</span> <span class="o">/</span> <span class="mi">2</span><span class="p">,</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">O</span> <span class="o">+</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">unit_vec_perp</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">transducer</span><span class="o">.</span><span class="n">activediameter</span> <span class="o">/</span> <span class="mi">2</span><span class="p">,</span>
+            <span class="p">])</span>
+            <span class="n">poly</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">Polygon</span><span class="p">(</span><span class="n">xy</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">color</span><span class="p">)</span>
+            <span class="n">ax</span><span class="o">.</span><span class="n">add_patch</span><span class="p">(</span><span class="n">poly</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">ax</span><span class="o">.</span><span class="n">annotate</span><span class="p">(</span>
+                <span class="s2">&quot;&quot;</span><span class="p">,</span>
+                <span class="n">xytext</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">O</span><span class="p">,</span>
+                <span class="n">xy</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">O</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span>
+                    <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">E</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">O</span><span class="p">))</span> <span class="o">/</span> <span class="mi">10</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">unit_vec</span><span class="p">,</span>
+                <span class="n">arrowprops</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">arrowstyle</span><span class="o">=</span><span class="s2">&quot;-&gt;&quot;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">color</span><span class="p">),</span>
+            <span class="p">)</span>
+        <span class="c1"># plot unused beam part</span>
+        <span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="p">)</span> <span class="o">=</span> <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="bp">self</span><span class="o">.</span><span class="n">O</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="bp">self</span><span class="o">.</span><span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">]],</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">O</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="bp">self</span><span class="o">.</span><span class="n">z</span><span class="p">[</span><span class="mi">0</span><span class="p">]],</span>
+                        <span class="n">color</span><span class="o">=</span><span class="n">color</span><span class="p">,</span>
+                        <span class="n">ls</span><span class="o">=</span><span class="s2">&quot;--&quot;</span><span class="p">,</span>
+                        <span class="n">lw</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+                        <span class="n">alpha</span><span class="o">=</span><span class="mf">0.3</span><span class="p">)</span>
+        <span class="c1"># plot used beam part</span>
+        <span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="p">)</span> <span class="o">=</span> <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span>
+            <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="bp">self</span><span class="o">.</span><span class="n">E</span><span class="p">[</span><span class="mi">0</span><span class="p">]],</span>
+            <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">z</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="bp">self</span><span class="o">.</span><span class="n">E</span><span class="p">[</span><span class="mi">1</span><span class="p">]],</span>
+            <span class="n">color</span><span class="o">=</span><span class="n">color</span><span class="p">,</span>
+            <span class="n">ls</span><span class="o">=</span><span class="s2">&quot;--&quot;</span><span class="p">,</span>
+            <span class="n">lw</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+        <span class="p">)</span></div>
+</div>
+
+
+
+<div class="viewcode-block" id="sketch_probes">
+<a class="viewcode-back" href="../../_autosummary/pyudv.geometry.sketch_probes.html#pyudv.geometry.sketch_probes">[docs]</a>
+<span class="k">def</span> <span class="nf">sketch_probes</span><span class="p">(</span>
+    <span class="n">probes</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">Probe</span><span class="p">],</span>
+    <span class="n">combinations</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">tuple</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">int</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">ax</span><span class="p">:</span> <span class="n">mplaxes</span><span class="o">.</span><span class="n">Axes</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">probe_colors</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">combination_colors</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+<span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Sketch multiple probes, and optionaly their intersections, etc ...</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    probes : list[Probe]</span>
+<span class="sd">        list of :class:`Probe &lt;pyudv.geometry.Probe&gt;` object to be sketched.</span>
+<span class="sd">    combinations : list[tuple[int, int]], optional</span>
+<span class="sd">        list of tuple of size 2 containing indexes of `probes` whose intersection should be sketched.</span>
+<span class="sd">    ax : mplaxes.Axes, optional</span>
+<span class="sd">        matplotlib axe on which the sketch is drawn. If None, a new figure is created (default is None).</span>
+<span class="sd">    probe_colors : list[str], optional</span>
+<span class="sd">        list of colors for the probes, by default None. It should be the same size as `probes`.</span>
+<span class="sd">    combination_colors : list[str], optional</span>
+<span class="sd">        list of colors for the intersetctions, by default None. It should be the same size as `combinations`.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">ax</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">layout</span><span class="o">=</span><span class="s2">&quot;constrained&quot;</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_aspect</span><span class="p">(</span><span class="s2">&quot;equal&quot;</span><span class="p">)</span>
+    <span class="c1">#</span>
+    <span class="k">if</span> <span class="n">probe_colors</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">probe_colors</span> <span class="o">=</span> <span class="p">[</span><span class="kc">None</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">probes</span><span class="p">]</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">combinations</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">)</span> <span class="ow">and</span> <span class="p">(</span><span class="n">combination_colors</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">):</span>
+        <span class="n">combination_colors</span> <span class="o">=</span> <span class="p">[</span><span class="kc">None</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">combinations</span><span class="p">]</span>
+    <span class="c1">#</span>
+    <span class="c1"># plot probes</span>
+    <span class="k">for</span> <span class="n">probe</span><span class="p">,</span> <span class="n">color</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">probes</span><span class="p">,</span> <span class="n">probe_colors</span><span class="p">):</span>
+        <span class="n">probe</span><span class="o">.</span><span class="n">plot_probe</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">color</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">combinations</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">for</span> <span class="n">combination</span><span class="p">,</span> <span class="n">combination_color</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">combinations</span><span class="p">,</span>
+                                                  <span class="n">combination_colors</span><span class="p">):</span>
+            <span class="n">probe1</span><span class="p">,</span> <span class="n">probe2</span> <span class="o">=</span> <span class="n">probes</span><span class="p">[</span><span class="n">combination</span><span class="p">[</span><span class="mi">0</span><span class="p">]],</span> <span class="n">probes</span><span class="p">[</span><span class="n">combination</span><span class="p">[</span><span class="mi">1</span><span class="p">]]</span>
+            <span class="n">X</span> <span class="o">=</span> <span class="n">probe_crossing_point</span><span class="p">(</span><span class="n">probe1</span><span class="p">,</span> <span class="n">probe2</span><span class="p">)</span>
+            <span class="n">ax</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">X</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">X</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="n">combination_color</span><span class="p">)</span>
+            <span class="c1">#</span>
+            <span class="n">z_interp</span><span class="p">,</span> <span class="n">z_min</span><span class="p">,</span> <span class="n">z_max</span> <span class="o">=</span> <span class="n">compute_vertical_axis</span><span class="p">(</span><span class="n">probe1</span><span class="p">,</span> <span class="n">probe2</span><span class="p">)</span>
+            <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="n">X</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">X</span><span class="p">[</span><span class="mi">0</span><span class="p">]],</span> <span class="p">[</span><span class="n">z_min</span><span class="p">,</span> <span class="n">z_max</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="n">combination_color</span><span class="p">)</span></div>
+
+
+
+<div class="viewcode-block" id="probe_crossing_point">
+<a class="viewcode-back" href="../../_autosummary/pyudv.geometry.probe_crossing_point.html#pyudv.geometry.probe_crossing_point">[docs]</a>
+<span class="k">def</span> <span class="nf">probe_crossing_point</span><span class="p">(</span><span class="n">probe1</span><span class="p">:</span> <span class="n">Probe</span><span class="p">,</span> <span class="n">probe2</span><span class="p">:</span> <span class="n">Probe</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    calculate the crossing point of two probe beams.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    probe1 : Probe</span>
+<span class="sd">        First :class:`Probe &lt;pyudv.geometry.Probe&gt;` object.</span>
+<span class="sd">    probe2 : Probe</span>
+<span class="sd">        Second :class:`Probe &lt;pyudv.geometry.Probe&gt;` object.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    ndarray, (2. )</span>
+<span class="sd">        coordinates of the crossing point.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">M</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="o">-</span><span class="n">probe1</span><span class="o">.</span><span class="n">unit_vec</span><span class="p">,</span> <span class="n">probe2</span><span class="o">.</span><span class="n">unit_vec</span><span class="p">])</span><span class="o">.</span><span class="n">T</span>
+    <span class="n">S</span> <span class="o">=</span> <span class="n">probe1</span><span class="o">.</span><span class="n">O</span> <span class="o">-</span> <span class="n">probe2</span><span class="o">.</span><span class="n">O</span>
+    <span class="n">T</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">inv</span><span class="p">(</span><span class="n">M</span><span class="p">)</span> <span class="o">@</span> <span class="n">S</span>
+    <span class="n">X</span> <span class="o">=</span> <span class="n">probe1</span><span class="o">.</span><span class="n">O</span> <span class="o">+</span> <span class="n">T</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="n">probe1</span><span class="o">.</span><span class="n">unit_vec</span>
+    <span class="k">return</span> <span class="n">X</span></div>
+
+
+
+<div class="viewcode-block" id="compute_vertical_axis">
+<a class="viewcode-back" href="../../_autosummary/pyudv.geometry.compute_vertical_axis.html#pyudv.geometry.compute_vertical_axis">[docs]</a>
+<span class="k">def</span> <span class="nf">compute_vertical_axis</span><span class="p">(</span><span class="n">probe1</span><span class="p">:</span> <span class="n">Probe</span><span class="p">,</span> <span class="n">probe2</span><span class="p">:</span> <span class="n">Probe</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    compute the common vertical axis between two probe beams.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    probe1 : Probe</span>
+<span class="sd">        First :class:`Probe &lt;pyudv.geometry.Probe&gt;` object.</span>
+<span class="sd">    probe2 : Probe</span>
+<span class="sd">        Second :class:`Probe &lt;pyudv.geometry.Probe&gt;` object.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    z_interp : ndarray</span>
+<span class="sd">        numpy array containg the vertical coordinates of the common axis.</span>
+<span class="sd">    z_min : float</span>
+<span class="sd">        minimal vertical coordinate</span>
+<span class="sd">    z_max : float</span>
+<span class="sd">        maximal vertical coordinate</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">ph</span><span class="o">.</span><span class="n">compute_common_part</span><span class="p">(</span><span class="n">probe1</span><span class="o">.</span><span class="n">z</span><span class="p">,</span> <span class="n">probe2</span><span class="o">.</span><span class="n">z</span><span class="p">)</span></div>
+
+
+
+<div class="viewcode-block" id="reconstruct_velocity">
+<a class="viewcode-back" href="../../_autosummary/pyudv.geometry.reconstruct_velocity.html#pyudv.geometry.reconstruct_velocity">[docs]</a>
+<span class="k">def</span> <span class="nf">reconstruct_velocity</span><span class="p">(</span>
+    <span class="n">u1</span><span class="p">:</span> <span class="n">npt</span><span class="o">.</span><span class="n">ArrayLike</span><span class="p">,</span> <span class="n">u2</span><span class="p">:</span> <span class="n">npt</span><span class="o">.</span><span class="n">ArrayLike</span><span class="p">,</span> <span class="n">probe1</span><span class="p">:</span> <span class="n">Probe</span><span class="p">,</span> <span class="n">probe2</span><span class="p">:</span> <span class="n">Probe</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">tuple</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span>
+           <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">]:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    This function takes the velocities measured by two probes, and reconstruct the velocity field, assuming that it only depends on the vertical coordinate.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    u1 : ArrayLike</span>
+<span class="sd">        velocity vector measured by first probe. The first dimension should be the same dimension as the radial coordinate contained in `probe1.z`.</span>
+<span class="sd">    u2 : ArrayLike</span>
+<span class="sd">        velocity vector measured by second probe. The first dimension should be the same dimension as the radial coordinate contained in `probe2.z`.</span>
+<span class="sd">    probe1 : Probe</span>
+<span class="sd">        First :class:`Probe &lt;pyudv.geometry.Probe&gt;` object.</span>
+<span class="sd">    probe2 : Probe</span>
+<span class="sd">        Second :class:`Probe &lt;pyudv.geometry.Probe&gt;` object.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    U : ndarray</span>
+<span class="sd">        reconstructed velocity components in the coordinate system corresponding to the one of the reference points of the probes.</span>
+<span class="sd">    z_interp : ndarray</span>
+<span class="sd">        coordinate vector corresponding to `U`</span>
+<span class="sd">    X : ndarray</span>
+<span class="sd">        crossing point of the probes</span>
+<span class="sd">    dx_1 : ndarray</span>
+<span class="sd">        horizontal distance between the first probe beam, and the vertical axis passing by the crossing point `X`</span>
+<span class="sd">    dx_2 : ndarray</span>
+<span class="sd">        horizontal distance between the second probe beam, and the vertical axis passing by the crossing point `X`</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># # Build common vertical axis</span>
+    <span class="n">z_interp</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">compute_vertical_axis</span><span class="p">(</span><span class="n">probe1</span><span class="p">,</span> <span class="n">probe2</span><span class="p">)</span>
+    <span class="c1"># # interpolating velocity</span>
+    <span class="n">interp1</span> <span class="o">=</span> <span class="n">scipyinterp</span><span class="o">.</span><span class="n">interp1d</span><span class="p">(</span><span class="n">probe1</span><span class="o">.</span><span class="n">z</span><span class="p">,</span> <span class="n">u1</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+    <span class="n">interp2</span> <span class="o">=</span> <span class="n">scipyinterp</span><span class="o">.</span><span class="n">interp1d</span><span class="p">(</span><span class="n">probe2</span><span class="o">.</span><span class="n">z</span><span class="p">,</span> <span class="n">u2</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+    <span class="c1">#</span>
+    <span class="n">u1_interp</span> <span class="o">=</span> <span class="n">interp1</span><span class="p">(</span><span class="n">z_interp</span><span class="p">)</span>
+    <span class="n">u2_interp</span> <span class="o">=</span> <span class="n">interp2</span><span class="p">(</span><span class="n">z_interp</span><span class="p">)</span>
+    <span class="c1">#</span>
+    <span class="c1"># velocity reconstruction</span>
+    <span class="n">M</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">probe1</span><span class="o">.</span><span class="n">unit_vec</span><span class="p">,</span> <span class="n">probe2</span><span class="o">.</span><span class="n">unit_vec</span><span class="p">])</span>
+    <span class="c1"># U = np.linalg.inv(M) @ np.array([u1_interp, u2_interp])</span>
+    <span class="n">U</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">einsum</span><span class="p">(</span><span class="s2">&quot;ij, jk... -&gt; ik...&quot;</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">inv</span><span class="p">(</span><span class="n">M</span><span class="p">),</span>
+                  <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">u1_interp</span><span class="p">,</span> <span class="n">u2_interp</span><span class="p">]))</span>
+    <span class="c1">#</span>
+    <span class="c1"># # other quantities</span>
+    <span class="c1"># crossing point</span>
+    <span class="n">X</span> <span class="o">=</span> <span class="n">probe_crossing_point</span><span class="p">(</span><span class="n">probe1</span><span class="p">,</span> <span class="n">probe2</span><span class="p">)</span>
+    <span class="c1"># horizontal distances to the vertical axis passing by the crossing point</span>
+    <span class="n">dx_1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">tan</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">radians</span><span class="p">(</span><span class="n">probe1</span><span class="o">.</span><span class="n">alpha</span><span class="p">))</span> <span class="o">*</span> <span class="p">(</span><span class="n">z_interp</span> <span class="o">-</span> <span class="n">X</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+    <span class="n">dx_2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">tan</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">radians</span><span class="p">(</span><span class="n">probe2</span><span class="o">.</span><span class="n">alpha</span><span class="p">))</span> <span class="o">*</span> <span class="p">(</span><span class="n">z_interp</span> <span class="o">-</span> <span class="n">X</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+    <span class="k">return</span> <span class="n">U</span><span class="p">,</span> <span class="n">z_interp</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">dx_1</span><span class="p">,</span> <span class="n">dx_2</span></div>
+
+
+
+<div class="viewcode-block" id="average_amplitude">
+<a class="viewcode-back" href="../../_autosummary/pyudv.geometry.average_amplitude.html#pyudv.geometry.average_amplitude">[docs]</a>
+<span class="k">def</span> <span class="nf">average_amplitude</span><span class="p">(</span>
+    <span class="n">a1</span><span class="p">:</span> <span class="n">npt</span><span class="o">.</span><span class="n">ArrayLike</span><span class="p">,</span> <span class="n">a2</span><span class="p">:</span> <span class="n">npt</span><span class="o">.</span><span class="n">ArrayLike</span><span class="p">,</span> <span class="n">probe1</span><span class="p">:</span> <span class="n">Probe</span><span class="p">,</span> <span class="n">probe2</span><span class="p">:</span> <span class="n">Probe</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">tuple</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span>
+           <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">]:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    This function takes the amplitude measured by two probes and average them, assuming that it only depends on the vertical coordinate.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    a1 : npt.ArrayLike</span>
+<span class="sd">        amplitude measured by first probe. The first dimension should be the same dimension as the radial coordinate contained in `probe1.z`.</span>
+<span class="sd">    a2 : npt.ArrayLike</span>
+<span class="sd">        amplitude measured by second probe. The first dimension should be the same dimension as the radial coordinate contained in `probe2.z`.</span>
+<span class="sd">    probe1 : Probe</span>
+<span class="sd">        First :class:`Probe &lt;pyudv.geometry.Probe&gt;` object.</span>
+<span class="sd">    probe2 : Probe</span>
+<span class="sd">        Second :class:`Probe &lt;pyudv.geometry.Probe&gt;` object.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    A : ndarray</span>
+<span class="sd">        averaged amplitud in the coordinate system corresponding to the one of the reference points of the probes.</span>
+<span class="sd">    z_interp : ndarray</span>
+<span class="sd">        coordinate vector corresponding to `U`</span>
+<span class="sd">    X : ndarray</span>
+<span class="sd">        crossing point of the probes</span>
+<span class="sd">    dx_1 : ndarray</span>
+<span class="sd">        horizontal distance between the first probe beam, and the vertical axis passing by the crossing point `X`</span>
+<span class="sd">    dx_2 : ndarray</span>
+<span class="sd">        horizontal distance between the second probe beam, and the vertical axis passing by the crossing point `X`</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># # Build common vertical axis</span>
+    <span class="n">z_interp</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">compute_vertical_axis</span><span class="p">(</span><span class="n">probe1</span><span class="p">,</span> <span class="n">probe2</span><span class="p">)</span>
+    <span class="c1"># # interpolating velocity</span>
+    <span class="n">interp1</span> <span class="o">=</span> <span class="n">scipyinterp</span><span class="o">.</span><span class="n">interp1d</span><span class="p">(</span><span class="n">probe1</span><span class="o">.</span><span class="n">z</span><span class="p">,</span> <span class="n">a1</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+    <span class="n">interp2</span> <span class="o">=</span> <span class="n">scipyinterp</span><span class="o">.</span><span class="n">interp1d</span><span class="p">(</span><span class="n">probe2</span><span class="o">.</span><span class="n">z</span><span class="p">,</span> <span class="n">a2</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+    <span class="c1">#</span>
+    <span class="n">a1_interp</span> <span class="o">=</span> <span class="n">interp1</span><span class="p">(</span><span class="n">z_interp</span><span class="p">)</span>
+    <span class="n">a2_interp</span> <span class="o">=</span> <span class="n">interp2</span><span class="p">(</span><span class="n">z_interp</span><span class="p">)</span>
+    <span class="c1">#</span>
+    <span class="c1"># # other quantities</span>
+    <span class="c1"># crossing point</span>
+    <span class="n">X</span> <span class="o">=</span> <span class="n">probe_crossing_point</span><span class="p">(</span><span class="n">probe1</span><span class="p">,</span> <span class="n">probe2</span><span class="p">)</span>
+    <span class="c1"># horizontal distances to the vertical axis passing by the crossing point</span>
+    <span class="n">dx_1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">tan</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">radians</span><span class="p">(</span><span class="n">probe1</span><span class="o">.</span><span class="n">alpha</span><span class="p">))</span> <span class="o">*</span> <span class="p">(</span><span class="n">z_interp</span> <span class="o">-</span> <span class="n">X</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+    <span class="n">dx_2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">tan</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">radians</span><span class="p">(</span><span class="n">probe2</span><span class="o">.</span><span class="n">alpha</span><span class="p">))</span> <span class="o">*</span> <span class="p">(</span><span class="n">z_interp</span> <span class="o">-</span> <span class="n">X</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+    <span class="k">return</span> <span class="p">(</span><span class="n">a1_interp</span><span class="o">+</span><span class="n">a2_interp</span><span class="p">)</span> <span class="o">/</span> <span class="mi">2</span><span class="p">,</span> <span class="n">z_interp</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">dx_1</span><span class="p">,</span> <span class="n">dx_2</span></div>
+
+
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
+    <span class="c1">#</span>
+    <span class="c1"># # Test Probe object definition</span>
+    <span class="n">r</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span>
+    <span class="n">alpha1</span><span class="p">,</span> <span class="n">alpha2</span> <span class="o">=</span> <span class="o">-</span><span class="mi">120</span><span class="p">,</span> <span class="o">-</span><span class="mi">70</span>  <span class="c1"># deg</span>
+    <span class="n">O1</span><span class="p">,</span> <span class="n">O2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">8</span><span class="p">]),</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">7</span><span class="p">])</span>
+    <span class="n">probe1_pars</span> <span class="o">=</span> <span class="p">[</span><span class="n">r</span><span class="p">,</span> <span class="n">alpha1</span><span class="p">,</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="n">O1</span><span class="p">]]</span>
+    <span class="n">probe2_pars</span> <span class="o">=</span> <span class="p">[</span><span class="n">r</span><span class="p">,</span> <span class="n">alpha2</span><span class="p">,</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="n">O2</span><span class="p">]]</span>
+    <span class="c1">#</span>
+    <span class="n">probe1</span> <span class="o">=</span> <span class="n">Probe</span><span class="p">(</span><span class="o">*</span><span class="n">probe1_pars</span><span class="p">,</span> <span class="n">transducer</span><span class="o">=</span><span class="n">MetFlowTransducers</span><span class="p">[</span><span class="mi">4</span><span class="p">])</span>
+    <span class="n">probe2</span> <span class="o">=</span> <span class="n">Probe</span><span class="p">(</span><span class="o">*</span><span class="n">probe2_pars</span><span class="p">)</span>
+    <span class="c1">#</span>
+    <span class="n">sketch_probes</span><span class="p">(</span>
+        <span class="p">[</span><span class="n">probe1</span><span class="p">,</span> <span class="n">probe2</span><span class="p">],</span>
+        <span class="n">combinations</span><span class="o">=</span><span class="p">[[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">]],</span>
+        <span class="n">probe_colors</span><span class="o">=</span><span class="p">[</span><span class="kc">None</span><span class="p">,</span> <span class="kc">None</span><span class="p">],</span>
+        <span class="n">combination_colors</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;k&quot;</span><span class="p">],</span>
+    <span class="p">)</span>
+
+    <span class="c1"># #### Test velocity reconstruction</span>
+    <span class="k">def</span> <span class="nf">U</span><span class="p">(</span><span class="n">z</span><span class="p">):</span>
+        <span class="n">u</span> <span class="o">=</span> <span class="mi">5</span> <span class="o">*</span> <span class="p">(</span><span class="mi">5</span> <span class="o">-</span> <span class="n">z</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span>
+        <span class="n">v</span> <span class="o">=</span> <span class="n">u</span> <span class="o">/</span> <span class="mi">10</span>
+        <span class="n">U</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">u</span><span class="p">,</span> <span class="n">v</span><span class="p">])</span>
+        <span class="k">return</span> <span class="n">U</span>
+
+    <span class="c1">#</span>
+    <span class="c1"># make fake signals</span>
+    <span class="n">u1</span> <span class="o">=</span> <span class="n">U</span><span class="p">(</span><span class="n">probe1</span><span class="o">.</span><span class="n">z</span><span class="p">)</span><span class="o">.</span><span class="n">T</span> <span class="o">@</span> <span class="n">probe1</span><span class="o">.</span><span class="n">unit_vec</span>
+    <span class="n">u2</span> <span class="o">=</span> <span class="n">U</span><span class="p">(</span><span class="n">probe2</span><span class="o">.</span><span class="n">z</span><span class="p">)</span><span class="o">.</span><span class="n">T</span> <span class="o">@</span> <span class="n">probe2</span><span class="o">.</span><span class="n">unit_vec</span>
+    <span class="c1">#</span>
+    <span class="c1"># #### reconstruction</span>
+    <span class="n">U_rec</span><span class="p">,</span> <span class="n">z_interp</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">dx_1</span><span class="p">,</span> <span class="n">dx_2</span> <span class="o">=</span> <span class="n">reconstruct_velocity</span><span class="p">(</span>
+        <span class="n">u1</span><span class="p">,</span> <span class="n">u2</span><span class="p">,</span> <span class="n">probe1</span><span class="p">,</span> <span class="n">probe2</span><span class="p">)</span>
+    <span class="n">U_th</span> <span class="o">=</span> <span class="n">U</span><span class="p">(</span><span class="n">z_interp</span><span class="p">)</span>
+    <span class="c1">#</span>
+    <span class="n">fig</span><span class="p">,</span> <span class="n">axarr</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">layout</span><span class="o">=</span><span class="s2">&quot;constrained&quot;</span><span class="p">,</span> <span class="n">sharey</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">ax</span><span class="p">,</span> <span class="n">u_th</span><span class="p">,</span> <span class="n">u_rec</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">axarr</span><span class="p">,</span> <span class="n">U_th</span><span class="p">,</span> <span class="n">U_rec</span><span class="p">):</span>
+        <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">u_th</span><span class="p">,</span> <span class="n">z_interp</span><span class="p">,</span> <span class="s2">&quot;.&quot;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;base&quot;</span><span class="p">)</span>
+        <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">u_rec</span><span class="p">,</span> <span class="n">z_interp</span><span class="p">,</span> <span class="s2">&quot;.&quot;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;reconstructed&quot;</span><span class="p">)</span>
+        <span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+    <span class="n">axarr</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">&quot;u&quot;</span><span class="p">)</span>
+    <span class="n">axarr</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">&quot;v&quot;</span><span class="p">)</span>
+    <span class="n">axarr</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">&quot;z&quot;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+
+                </article>
+              
+              
+              
+              
+              
+            </div>
+            
+            
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/bootstrap.js?digest=365ca57ee442770a23c6"></script>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=365ca57ee442770a23c6"></script>
+
+  <footer class="bd-footer">
+<div class="bd-footer__inner bd-page-width">
+  
+    <div class="footer-items__start">
+      
+        <div class="footer-item">
+  <p class="copyright">
+    
+      © Copyright 2023, Cyril Gadal.
+      <br/>
+    
+  </p>
+</div>
+      
+        <div class="footer-item">
+  <p class="sphinx-version">
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 7.2.6.
+    <br/>
+  </p>
+</div>
+      
+    </div>
+  
+  
+  
+    <div class="footer-items__end">
+      
+        <div class="footer-item"><p class="theme-version">
+  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.14.3.
+</p></div>
+      
+    </div>
+  
+</div>
+
+  </footer>
+  </body>
+</html>
