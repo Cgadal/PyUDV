@@ -24,15 +24,13 @@ def alpha_w(f, T):
     >>> print(alpha_w(f, T))
 
     References
-    --------
+    ----------
     [1] Fisher, F. H., & Simmons, V. P. (1977). Sound absorption in sea water. The Journal of the Acoustical Society of America, 62(3), 558-564.
 
     """
-    return (
-        10 ** (-15)
-        * (55.9 - 2.37 * T + 4.77 * 10 ** (-2) * T**2 - 3.48 * 10 ** (-4) * T**3)
-        * f**2
-    )
+    return (10**(-15) *
+            (55.9 - 2.37*T + 4.77 * 10**(-2) * T**2 - 3.48 * 10**(-4) * T**3) *
+            f**2)
 
 
 def sound_velocity(T):
@@ -54,12 +52,12 @@ def sound_velocity(T):
     >>> print(sound_velocity(T))
 
     References
-    --------
+    ----------
     [1] Lubbers, J., & Graaff, R. (1998). A simple and accurate formula for the sound velocity in water. Ultrasound in medicine & biology, 24(7), 1065-1068.
 
 
     """
-    return 1405.03 + 4.624 * T - 3.83 * 10 ** (-2) * T**2
+    return 1405.03 + 4.624*T - 3.83 * 10**(-2) * T**2
 
 
 def near_field_theoretical(r, rn):
@@ -84,14 +82,14 @@ def near_field_theoretical(r, rn):
     >>> Psi = near_field_theoretical(r, rn)
 
     References
-    --------
+    ----------
     [1] Downing, A., Thorne, P. D., & Vincent, C. E. (1995). Backscattering from a suspension in the near field of a piston transducer. The Journal of the Acoustical Society of America, 97(3), 1614-1620.
     [2] Pedocchi, F., & García, M. H. (2012). Acoustic measurement of suspended sediment concentration profiles in an oscillatory boundary layer. Continental Shelf Research, 46, 87-95.
 
 
     """
     # return 1 + rn**3.2/(0.43*r*rn**2.2 + 0.48*r**3.2)
-    return 1 + rn**3.2 / (1.35 * r * rn**2.2 + (2.5 * r) ** 3.2)
+    return 1 + rn**3.2 / (1.35 * r * rn**2.2 + (2.5 * r)**3.2)
 
 
 def correction_factor(r, alpha_w, Ks, Kt, psi):
@@ -116,7 +114,7 @@ def correction_factor(r, alpha_w, Ks, Kt, psi):
         return the part of the mean squared voltage that is independent of the sediment concentration.
 
     """
-    return np.exp(-4 * r * alpha_w) * ((Ks * Kt) / (r * psi)) ** 2
+    return np.exp(-4 * r * alpha_w) * ((Ks*Kt) / (r*psi))**2
 
 
 def create_MSvoltage(C, r, Xi, alpha_w, Ks, Kt, psi):
@@ -150,6 +148,6 @@ def create_MSvoltage(C, r, Xi, alpha_w, Ks, Kt, psi):
     if Xi == 0:
         integral = 0
     else:
-        integral = cumulative_trapezoid(Xi * C + 0 * r, r + 0 * C, initial=0)
+        integral = cumulative_trapezoid(Xi*C + 0*r, r + 0*C, initial=0)
     factor = correction_factor(r, alpha_w, Ks, Kt, psi)
     return C * np.exp(-4 * integral) * factor

@@ -7,7 +7,7 @@ Sketch multiple probes
 import matplotlib.pyplot as plt
 import numpy as np
 
-from pyudv.geometry import Probe, sketch_probes
+from pyudv.geometry import MetFlowTransducers, Probe, sketch_probes
 
 # ## define probes
 r = np.linspace(1, 5, 100)  # beam radial coordiantes, same for all probes
@@ -26,8 +26,15 @@ PROBE_PARS = [
     [r, alpha3, [0, O3]],  # probe3
     [r, alpha4, [0, O4]],  # probe4
 ]
-#
-probes = [Probe(*probe_pars) for probe_pars in PROBE_PARS]
+# transducers
+transducers = [
+    MetFlowTransducers[4], MetFlowTransducers[2], MetFlowTransducers[1], None
+]
+
+probes = [
+    Probe(*probe_pars, transducer)
+    for probe_pars, transducer in zip(PROBE_PARS, transducers)
+]
 probe_colors = ["tab:blue", "tab:green", "tab:orange", "tab:red"]
 combinations = [(0, 1), (2, 3)]
 combination_colors = ["k", "grey"]

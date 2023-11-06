@@ -1,5 +1,12 @@
+# If extensions (or modules to document with autodoc) are in another directory,
+# add these directories to sys.path here. If the directory is relative to the
+# documentation root, use os.path.abspath to make it absolute, like shown here.
+#
+import os
+import sys
+
 import sphinx_gallery
-from sphinx_gallery.sorting import FileNameSortKey, ExplicitOrder
+from sphinx_gallery.sorting import ExplicitOrder, FileNameSortKey
 
 # Configuration file for the Sphinx documentation builder.
 #
@@ -7,13 +14,6 @@ from sphinx_gallery.sorting import FileNameSortKey, ExplicitOrder
 # https://www.sphinx-doc.org/en/master/usage/configuration.html
 
 # -- Path setup --------------------------------------------------------------
-
-# If extensions (or modules to document with autodoc) are in another directory,
-# add these directories to sys.path here. If the directory is relative to the
-# documentation root, use os.path.abspath to make it absolute, like shown here.
-#
-import os
-import sys
 
 sys.path.insert(0, os.path.abspath("../"))
 
@@ -28,6 +28,8 @@ author = "Cyril Gadal"
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#general-configuration
 
 extensions = [
+    "sphinx.ext.napoleon",
+    "numpydoc",
     "sphinx.ext.autodoc",  # Core Sphinx library for auto html doc generation from docstrings
     "sphinx.ext.autosummary",  # Create neat summary tables for modules/classes/methods etc
     # Link to other project's documentation (see mapping below)
@@ -37,8 +39,6 @@ extensions = [
     # Automatically document param types (less noise in class signature)
     "sphinx_autodoc_typehints",
     # 'nbsphinx',  # Integrate Jupyter Notebooks and Sphinx
-    "sphinx.ext.napoleon",
-    "numpydoc",
     "sphinx.ext.doctest",
     "sphinx.ext.mathjax",
     "sphinx_gallery.gen_gallery",
@@ -66,7 +66,8 @@ exclude_patterns = ["_build", "Thumbs.db", ".DS_Store"]
 # -- Options for Sphinx gallery ---------------------------------------------
 
 intersphinx_mapping = {
-    "python": ("https://docs.python.org/{.major}".format(sys.version_info), None),
+    "python":
+    ("https://docs.python.org/{.major}".format(sys.version_info), None),
     "numpy": ("https://numpy.org/doc/stable/", None),
     "matplotlib": ("https://matplotlib.org/stable", None),
     "scipy": ("https://docs.scipy.org/doc/scipy/", None),
@@ -77,7 +78,8 @@ gallery_dirs = ["_examples"]
 
 sphinx_gallery_conf = {
     "examples_dirs": examples_dirs,  # path to your example scripts
-    "gallery_dirs": gallery_dirs,  # path to where to save gallery generated output
+    "gallery_dirs":
+    gallery_dirs,  # path to where to save gallery generated output
     # directory where function/class granular galleries are stored
     "backreferences_dir": "_gen_modules/backreferences",
     # Modules for which function/class level galleries are created.

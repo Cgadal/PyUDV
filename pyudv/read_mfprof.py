@@ -3,8 +3,8 @@ This module allows you to read `.mfprof` files from Met-Flow UDVs, and extract t
 
 """
 
-import numpy as np
 import netCDF4
+import numpy as np
 
 Types = {
     "Frequency": np.int32,
@@ -151,7 +151,9 @@ Absolute_gains = {
 }
 
 
-def read_mfprof(fileName: str, SI_units: bool = True, convert_time: bool = True):
+def read_mfprof(fileName: str,
+                SI_units: bool = True,
+                convert_time: bool = True):
     """Read .mfprof binary files of the Met-Flow UDV. This is mostly a direct python translation of the matlab script given by Met-Flow.
 
     Parameters
@@ -214,8 +216,10 @@ def read_mfprof(fileName: str, SI_units: bool = True, convert_time: bool = True)
         # First, we allocate memory space for faster file reading
         Data["transducer"] = np.zeros((Infos["nProfiles"][0], ))
         Data["profileTime"] = np.zeros((Infos["nProfiles"][0], ))
-        Data["DopplerData"] = np.zeros((Infos["nChannels"][0], Infos["nProfiles"][0]))
-        Data["AmplitudeData"] = np.zeros((Infos["nChannels"][0], Infos["nProfiles"][0]))
+        Data["DopplerData"] = np.zeros(
+            (Infos["nChannels"][0], Infos["nProfiles"][0]))
+        Data["AmplitudeData"] = np.zeros(
+            (Infos["nChannels"][0], Infos["nProfiles"][0]))
 
         # READ CONTENTS FROM BLOCK nProfiles TIMES
         for i in range(Infos["nProfiles"][0]):
@@ -228,11 +232,14 @@ def read_mfprof(fileName: str, SI_units: bool = True, convert_time: bool = True)
             Data["profileTime"][i] = np.fromfile(file, np.int64, 1)
             # DOPPLER Infos BLOCK
             # Doppler Infos block contains nChannels Int16 Doppler values from UVP
-            Data["DopplerData"][:, i] = np.fromfile(file, np.int16, Infos["nChannels"][0])
+            Data["DopplerData"][:, i] = np.fromfile(file, np.int16,
+                                                    Infos["nChannels"][0])
             # AMPLITUDE Infos BLOCK
             # Amplitude Infos block contains nChannels Int16 Amplitude values from UVP
             if Infos["flags"]:  # Read Infos if it exists
-                Data["AmplitudeData"][:, i] = np.fromfile(file, np.int16, Infos["nChannels"][0])
+                Data["AmplitudeData"][:,
+                                      i] = np.fromfile(file, np.int16,
+                                                       Infos["nChannels"][0])
 
         ############################################################################
         # ##### UVP PARAMETER  - Read the UVP Parameters into a Matlab struct ######
@@ -284,7 +291,8 @@ def read_mfprof(fileName: str, SI_units: bool = True, convert_time: bool = True)
             Parameters[key] = 1e-3 * Parameters[key]
             Units[key] = "s"
 
-    Data["DistanceAlongBeam"] = (np.arange(Data["AmplitudeData"].shape[0]) * Parameters["ChannelDistance"] +
+    Data["DistanceAlongBeam"] = (np.arange(Data["AmplitudeData"].shape[0]) *
+                                 Parameters["ChannelDistance"] +
                                  Parameters["StartChannel"])
     return Data, Parameters, Infos, Units
 
@@ -294,7 +302,12 @@ def read_mfprof(fileName: str, SI_units: bool = True, convert_time: bool = True)
 #     return dt.datetime(1601, 1, 1) + dt.timedelta(microseconds=us)
 
 
-def velocity_from_UVPdata(raw_data, SoundSpeed, MaximumDepth, Angle: float, Frequency: float, Nbytes: int = 8):
+def velocity_from_UVPdata(raw_data,
+                          SoundSpeed,
+                          MaximumDepth,
+                          Angle: float,
+                          Frequency: float,
+                          Nbytes: int = 8):
     """Calculate velocity from UDV raw data. Units must be checked outside of this function - no conversion is done here.
 
     Parameters
@@ -329,7 +342,9 @@ def velocity_from_UVPdata(raw_data, SoundSpeed, MaximumDepth, Angle: float, Freq
     return Fd * SoundSpeed * Angle_correction / (2*Frequency)
 
 
-def velocity_from_mfprof_reading(Data: dict, Parameters: dict, Nbytes: int = 8):
+def velocity_from_mfprof_reading(Data: dict,
+                                 Parameters: dict,
+                                 Nbytes: int = 8):
     """Calculate velocity from `Data` and `Parameters` dictionnaries as output of :func:`read_mfprof <pyudv.read_mfprof.read_mfprof>`,
     using the function :func:`velocity_from_UVPdata <pyudv.read_mfprof.velocity_from_UVPdata>`.
 
@@ -355,7 +370,12 @@ def velocity_from_mfprof_reading(Data: dict, Parameters: dict, Nbytes: int = 8):
         Parameters["Angle"],
         Parameters["Frequency"],
     )
-    return velocity_from_UVPdata(raw_data, SoundSpeed, MaximumDepth, Angle, Frequency, Nbytes=Nbytes)
+    return velocity_from_UVPdata(raw_data,
+                                 SoundSpeed,
+                                 MaximumDepth,
+                                 Angle,
+                                 Frequency,
+                                 Nbytes=Nbytes)
 
 
 def amplitude_from_UVPdata(
@@ -395,10 +415,15 @@ def amplitude_from_UVPdata(
         Unamplified/corrected echo signal.
 
     """
-    return (raw_data * (1/GainStart) * (GainStart / GainEnd)**((z-zstart) / (zend-zstart)) * deltaV / 2**Nbytes)
+    return (raw_data * (1/GainStart) * (GainStart / GainEnd)**((z-zstart) /
+                                                               (zend-zstart)) *
+            deltaV / 2**Nbytes)
 
 
-def amplitude_from_mfprof_reading(Data: dict, Parameters: dict, Nbytes: int = 14, deltaV: float = 5):
+def amplitude_from_mfprof_reading(Data: dict,
+                                  Parameters: dict,
+                                  Nbytes: int = 14,
+                                  deltaV: float = 5):
     """Calculate the unamplified/corrected echo signal from `Data` and `Parameters` dictionnaries as output of :func:`read_mfprof <pyudv.read_mfprof.read_mfprof>`,
     using the function :func:`amplitude_from_UVPdata <pyudv.read_mfprof.amplitude_from_UVPdata>`.
 
@@ -426,7 +451,13 @@ def amplitude_from_mfprof_reading(Data: dict, Parameters: dict, Nbytes: int = 14
         Absolute_gains[F0][Parameters["GainStart"]],
         Absolute_gains[F0][Parameters["GainEnd"]],
     )
-    return amplitude_from_UVPdata(raw_data, z, GainStart, GainEnd, zend, Nbytes=Nbytes, deltaV=deltaV)
+    return amplitude_from_UVPdata(raw_data,
+                                  z,
+                                  GainStart,
+                                  GainEnd,
+                                  zend,
+                                  Nbytes=Nbytes,
+                                  deltaV=deltaV)
 
 
 # #### Writing functions
@@ -478,7 +509,10 @@ def _create_variable(
         var.comments = comments
 
 
-def mfprof_to_netcdf(input_mfprof: str, output_netcdf: str | object, add_attr: dict = None, cut_zeros: bool = True):
+def mfprof_to_netcdf(input_mfprof: str,
+                     output_netcdf: str | object,
+                     add_attr: dict = None,
+                     cut_zeros: bool = True):
     """
     Convert a .mfprof file to a netCDF file.
 
@@ -493,8 +527,8 @@ def mfprof_to_netcdf(input_mfprof: str, output_netcdf: str | object, add_attr: d
     cut_zeros : bool, optional
         If True, cut the measurements data and remove all the trailing 0 added when the measurements are stopped bedore the attributed time, by default True
 
-    Example
-    -------
+    Examples
+    --------
     >>> mfprof_to_netcdf('input.mfprof', 'output.nc', add_attr = {name: 'John Smith', team: 'the best'}, cut_zeros=True)
     """
     if isinstance(output_netcdf, str):
@@ -506,7 +540,8 @@ def mfprof_to_netcdf(input_mfprof: str, output_netcdf: str | object, add_attr: d
     amplitude_data = amplitude_from_mfprof_reading(Data, Parameters)
     velocity_data = velocity_from_mfprof_reading(Data, Parameters)
     #
-    tmax = (np.argwhere(Data["transducer"] == 0).squeeze()[0] if ((Data["transducer"] == 0).any() & cut_zeros) else -1)
+    tmax = (np.argwhere(Data["transducer"] == 0).squeeze()[0] if
+            ((Data["transducer"] == 0).any() & cut_zeros) else -1)
     # ### fill Data
     newfile.createDimension("time", Data["profileTime"][:tmax].size)
     newfile.createDimension("z", Data["DistanceAlongBeam"].size)
